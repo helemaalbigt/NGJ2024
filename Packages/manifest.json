@@ -4,7 +4,7 @@
     "com.meta.xr.depthapi.urp": "https://github.com/oculus-samples/Unity-DepthAPI.git?path=/Packages/com.meta.xr.depthapi.urp",
     "com.meta.xr.mrutilitykit": "63.0.0",
     "com.meta.xr.sdk.core": "63.0.0",
-    "com.meta.xr.sdk.haptics": "63.0.0",
+    "com.meta.xr.sdk.haptics": "64.0.0",
     "com.meta.xr.sdk.interaction": "63.0.0",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.development": "1.0.1",
