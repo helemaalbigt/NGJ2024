@@ -4,14 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using VrDebugPlugin;
 
-public class PlayerFootDetector : MonoBehaviour
+public class BodyManager : MonoBehaviour
 {
     public OVRSkeleton _skeleton;
-
+    public Transform _head;
+    
     private Dictionary<OVRSkeleton.BoneId, Transform> _bones = new Dictionary<OVRSkeleton.BoneId, Transform>(); 
 
     void Update() {
         UpdateBones();
+        VrDebug.DrawPoint(GetFootPosition());
+    }
+
+    public Vector3 GetFootPosition() {
+        var pos = _head.position;
+        pos.y = 0;
+        return pos;
     }
 
     private void UpdateBones() {
