@@ -6,7 +6,14 @@ using UnityEditor;
 
 public class HapticsManager : MonoBehaviour
 {
+    public static HapticsManager Instance { get; private set; }
+
     private Dictionary<GUID, HapticClipPlayer> myPlayers;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public GUID PlayHapticClip(HapticClip aClip, bool aIsLooping = false, Controller aController = Controller.Both)
     {

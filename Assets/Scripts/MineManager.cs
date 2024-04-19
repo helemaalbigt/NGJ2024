@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class MineManager : MonoBehaviour
 {
+    public static MineManager Instance { get; private set; }
+
     public Mine myMinePrefab;
 
     private List<Mine> myMines;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void Spawn(Transform aPosition)
     {
