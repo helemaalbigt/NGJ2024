@@ -7,9 +7,9 @@ public class MineManager : MonoBehaviour
 {
     public static MineManager Instance { get; private set; }
 
-    public Mine myMinePrefab;
+    public Mine _minePrefab;
 
-    private List<Mine> myMines;
+    private List<Mine> _mines;
 
     private void Awake()
     {
@@ -19,19 +19,19 @@ public class MineManager : MonoBehaviour
     public void Spawn(Transform aPosition)
     {
         aPosition.position = new Vector3(aPosition.position.x, 0, aPosition.position.z);
-        Mine mine = Instantiate(myMinePrefab, aPosition);
-        myMines.Add(mine);
+        Mine mine = Instantiate(_minePrefab, aPosition);
+        _mines.Add(mine);
     }
 
     public bool GetClosestMinePosition(Vector3 aPosition, out Vector3 aClosestMinePosition)
     {
         aClosestMinePosition = Vector3.zero;
 
-        if (myMines.Count == 0)
+        if (_mines.Count == 0)
             return false;
 
         float distance2 = float.MaxValue;
-        foreach (Mine mine in myMines)
+        foreach (Mine mine in _mines)
         {
             Vector3 offset = aPosition - mine.transform.position;
             float sqrDist = offset.sqrMagnitude;
@@ -47,11 +47,11 @@ public class MineManager : MonoBehaviour
 
     public void UnspawnAll()
     {
-        foreach (var mine in myMines)
+        foreach (var mine in _mines)
         {
             Destroy(mine);
         }
 
-        myMines.Clear();
+        _mines.Clear();
     }
 }

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Haptics;
-using UnityEditor;
 using System;
 
 public class HapticsManager : MonoBehaviour
 {
     public static HapticsManager Instance { get; private set; }
 
-    private Dictionary<Guid, HapticClipPlayer> myPlayers;
+    private Dictionary<Guid, HapticClipPlayer> _players;
 
     private void Awake()
     {
@@ -22,42 +21,42 @@ public class HapticsManager : MonoBehaviour
         player.isLooping = aIsLooping;
         player.Play(aController);
         Guid uid = Guid.NewGuid();
-        myPlayers.Add(uid, player);
+        _players.Add(uid, player);
 
         return uid;
     }
 
     public void ChangeAmplitude(Guid aUID, float anAmplitude)
     {
-        if (!myPlayers.ContainsKey(aUID))
+        if (!_players.ContainsKey(aUID))
             return;
 
-        myPlayers[aUID].amplitude = Mathf.Clamp(anAmplitude, 0.0f, 1.0f);
+        _players[aUID].amplitude = Mathf.Clamp(anAmplitude, 0.0f, 1.0f);
     }
 
     public void ChangeFrequency(Guid aUID, float aFrequency)
     {
-        if (!myPlayers.ContainsKey(aUID))
+        if (!_players.ContainsKey(aUID))
             return;
 
-        myPlayers[aUID].frequencyShift = Mathf.Clamp(aFrequency, -1.0f, 1.0f);
+        _players[aUID].frequencyShift = Mathf.Clamp(aFrequency, -1.0f, 1.0f);
     }
 
     public void Stop(Guid aUID)
     {
-        if (!myPlayers.ContainsKey(aUID))
+        if (!_players.ContainsKey(aUID))
             return;
 
-        myPlayers[aUID].Stop();
+        _players[aUID].Stop();
     }
 
     public void StopAll()
     {
-        foreach (var player in myPlayers)
+        foreach (var player in _players)
         {
             player.Value.Stop();
         }
 
-        myPlayers.Clear();
+        _players.Clear();
     }
 }

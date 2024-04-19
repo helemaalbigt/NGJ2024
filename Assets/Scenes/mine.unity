@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mine
       objectReference: {fileID: 0}
+    - target: {fileID: 1424766898805327134, guid: 18dbbc1cd24241741a977d5cc95aaef3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7390768358122853353, guid: 18dbbc1cd24241741a977d5cc95aaef3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

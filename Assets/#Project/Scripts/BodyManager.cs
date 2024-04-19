@@ -8,12 +8,14 @@ public class BodyManager : MonoBehaviour
 {
     public OVRSkeleton _skeleton;
     public Transform _head;
+    public PlayerMineCollider _playerMineCollider;
     
     private Dictionary<OVRSkeleton.BoneId, Transform> _bones = new Dictionary<OVRSkeleton.BoneId, Transform>(); 
 
     void Update() {
         UpdateBones();
         VrDebug.DrawPoint(GetFootPosition());
+        _playerMineCollider.SetPosition(GetFootPosition());
     }
 
     public Vector3 GetFootPosition() {
