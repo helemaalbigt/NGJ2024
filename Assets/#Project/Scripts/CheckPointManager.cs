@@ -37,6 +37,10 @@ public class CheckPointManager : MonoBehaviour {
 
         return valid;
     }
+
+    public void ClearAllCheckpoints() {
+        checkPoints.Clear();
+    }
     
     void Update()
     {
