@@ -11,7 +11,7 @@ public class PlayerMineCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Mine>())
+        if (other.gameObject.layer == 6) // Mine = 6
         {
             Die();
         }
