@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     public int _numberOfRounds = 3;
     public int _numberOfMinesPerRun = 3;
 
-    public MonoState gameOverState;
-    public MonoState playerChangeState;
     public int playerCount;
 
     public enum RunState
@@ -126,7 +124,19 @@ public class GameManager : MonoBehaviour
         return _playerRuns[_currentPlayerId].Last();
     }
 
-    public MonoState GetEndRunState()
+    public bool IsGameOver()
+    {
+        int nextPlayerId = _currentPlayerId + 1;
+        int roundCount = _currentRoundCount;
+        if (nextPlayerId >= playerCount)
+        {
+            roundCount++;
+        }
+
+        return roundCount >= _numberOfRounds - 1;
+    }
+
+    public void SetNextRunState()
     {
         _currentPlayerId++;
         if (_currentPlayerId >= playerCount)
@@ -134,11 +144,6 @@ public class GameManager : MonoBehaviour
             _currentPlayerId = 0;
             _currentRoundCount++;
         }
-
-        if (_currentRoundCount >= _numberOfRounds - 1)
-            return gameOverState;
-        else
-            return playerChangeState;
     }
 
     public void OnGameOver()

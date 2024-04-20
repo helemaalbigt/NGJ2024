@@ -9,9 +9,15 @@ public class ScoreState : MonoState {
     public GameObject detector;
     public BodyManager bodyManager;
 
+    public MonoState gameOverState;
+    public MonoState playerChangeState;
+
+    private bool _isGameOver;
+
     private void OnEnable() {
         detector.SetActive(false);
         bodyManager.EnableMineCollision(false);
+        _isGameOver = GameManager.Instance.IsGameOver();
     }
 
     void Update()
@@ -20,7 +26,8 @@ public class ScoreState : MonoState {
         // Skip with button
         if (InputManager.I.PrimaryButtonDown(Hand.right))
         {
-            GoToState(GameManager.Instance.GetEndRunState());
+            GameManager.Instance.SetNextRunState();
+            GoToState(_isGameOver ? gameOverState : playerChangeState);
         }
     }
 }
