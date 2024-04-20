@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class ScoreState : MonoState {
     
-    public GameObject detector;
     public BodyManager bodyManager;
     public VrButton toNext;
     
@@ -19,7 +18,8 @@ public class ScoreState : MonoState {
     private bool _isGameOver;
 
     private void OnEnable() {
-        detector.SetActive(false);
+        SceneFinder.I.detector.SetActive(false);
+        SceneFinder.I.minesAvailableUI.SetActive(false);
         bodyManager.EnableMineCollision(false);
         _isGameOver = GameManager.Instance.IsGameOver();
         pageGroup.OpenPage(page);

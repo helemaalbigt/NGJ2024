@@ -11,7 +11,6 @@ public class PlaceCheckPointsState : MonoState {
     public Transform rightHand;
     public PageGroup pageGroup;
     public Page page;
-    public GameObject detector;
     public VrButton button;
 
     [Space(15)] public MonoState next;
@@ -23,7 +22,8 @@ public class PlaceCheckPointsState : MonoState {
     void OnEnable() {
         checkPointManager.ClearAllCheckpoints();
         pageGroup.OpenPage(page);
-        detector.SetActive(false);
+        SceneFinder.I.detector.SetActive(false);
+        SceneFinder.I.minesAvailableUI.SetActive(false);
     }
 
     private void Update() {

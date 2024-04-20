@@ -7,15 +7,15 @@ using UnityEngine;
 public class GameOverState : MonoState {
     
     public MonoState lobbyState;
-    public GameObject detector;
     public BodyManager bodyManager;
     public VrButton toNext;
     public PageGroup pageGroup;
     public Page page;
 
     private void OnEnable() {
-        detector.SetActive(false);
         bodyManager.EnableMineCollision(false);
+        SceneFinder.I.detector.SetActive(false);
+        SceneFinder.I.minesAvailableUI.SetActive(false);
         GameManager.Instance.OnGameOver();
         pageGroup.OpenPage(page);
     }
