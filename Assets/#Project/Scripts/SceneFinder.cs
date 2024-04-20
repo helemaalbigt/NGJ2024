@@ -14,4 +14,5 @@ public class SceneFinder : MonoBehaviour {
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
+    public GameObject detector;
 }

@@ -11,8 +11,8 @@ public class PlayerMenuView : MonoBehaviour {
     public VrButton decrease;
     // Start is called before the first frame update
     void Start() {
-        increase.OnClickUp += IncreaseOnOnClickUp;
-        decrease.OnClickUp += DecreaseOnOnClickUp;
+        increase.OnClick += IncreaseOnOnClickUp;
+        decrease.OnClick += DecreaseOnOnClickUp;
     }
 
     private void DecreaseOnOnClickUp() {

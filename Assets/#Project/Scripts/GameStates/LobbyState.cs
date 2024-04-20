@@ -14,6 +14,7 @@ public class LobbyState : MonoState {
    public VrButton startButton;
    
    private void OnEnable() {
+      SceneFinder.I.detector.SetActive(false);
       pageGroup.OpenPage(page);
    }
 
@@ -23,6 +24,7 @@ public class LobbyState : MonoState {
       }
       
       if (startButton.interactableState == InteractableState.clicked) {
+         GameManager.Instance.StartGame();
          GoToState(runState);
       }
    }
