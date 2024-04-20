@@ -22,7 +22,7 @@ public class PlacingState : MonoState {
     {
         if (InputManager.I.TriggerDown(Hand.right)) {
             var spawnPos = new Vector3(rightHand.position.x, 0, rightHand.position.z);
-            _placingMine = mineManager.Spawn(spawnPos);
+            _placingMine = mineManager.Spawn(spawnPos, 0);
         }
 
         if (_placingMine != null) {
