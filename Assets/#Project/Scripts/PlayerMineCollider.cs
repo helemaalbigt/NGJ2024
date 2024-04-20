@@ -26,6 +26,11 @@ public class PlayerMineCollider : MonoBehaviour
         if (other.gameObject.layer == 6) // Mine = 6
         {
             Die();
+            GameManager.Instance.OnMineTriggered(other.GetComponentInParent<Mine>());
+        }
+        else if (other.gameObject.layer == 7) // CheckPoint = 7
+        {
+            GameManager.Instance.OnCheckPointEntered(other.GetComponent<CheckPoint>());
         }
     }
 

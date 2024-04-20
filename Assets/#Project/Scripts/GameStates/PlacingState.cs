@@ -15,15 +15,14 @@ public class PlacingState : MonoState {
 
     private void OnEnable() {
         detector.SetActive(false);
-        MineManager.Instance.ShowVisuals(true);
-        bodyManager.EnableMineCollision(false);
+        bodyManager.EnableMineCollision(true);
     }
 
     void Update()
     {
         if (InputManager.I.TriggerDown(Hand.right)) {
             var spawnPos = new Vector3(rightHand.position.x, 0, rightHand.position.z);
-            _placingMine = MineManager.Instance.Spawn(spawnPos, 0);
+            _placingMine = GameManager.Instance.PlaceMine(spawnPos);
         }
 
         if (_placingMine != null) {

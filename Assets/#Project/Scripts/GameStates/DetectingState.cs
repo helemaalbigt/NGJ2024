@@ -12,8 +12,7 @@ public class DetectingState : MonoState {
    private void OnEnable() {
       detector.SetActive(true);
       bodyManager.EnableMineCollision(true);
-      //MineManager.Instance.ShowVisuals(false);
-   }
+    }
 
    private void Update() {
 

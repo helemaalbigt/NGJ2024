@@ -31,6 +31,17 @@ public class MineDetector : MonoBehaviour
         _audioSource.clip = _audioClip;
     }
 
+    private void OnDisable()
+    {
+        _audioSource.Stop();
+
+        if (_hapticGuid != Guid.Empty)
+        {
+            HapticsManager.Instance.Stop(_hapticGuid);
+            _hapticGuid = Guid.Empty;
+        }
+    }
+
     private void Update()
     {
         Mine closestMine = MineManager.Instance.GetClosestMine(_detectorOrigin.position);

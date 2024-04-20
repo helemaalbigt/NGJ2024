@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class CheckPointManager : MonoBehaviour {
     public CheckPoint checkPointPrefab;
@@ -14,7 +15,6 @@ public class CheckPointManager : MonoBehaviour {
     private List<CheckPoint> checkPoints = new List<CheckPoint>();
 
     private const float MinMargin = 2f;
-
 
     public CheckPoint CreateCheckPoint() {
         return Instantiate(checkPointPrefab, transform);
@@ -47,5 +47,14 @@ public class CheckPointManager : MonoBehaviour {
 
     public void ClearAllCheckpoints() {
         checkPoints.Clear();
+    }
+
+    public void ResetAllCheckpoints()
+    {
+        foreach (var checkPoint in checkPoints)
+        {
+            checkPoint.isActive = true;
+            checkPoint.isActive = false;
+        }
     }
 }

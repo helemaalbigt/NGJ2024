@@ -36,6 +36,7 @@ public class PlaceCheckPointsState : MonoState {
             
 #if UNITY_EDITOR
             if (InputManager.I.PrimaryButtonDown(Hand.right)) {
+                GameManager.Instance.StartGame(1);
                 GoToState(next);
             }
 #endif

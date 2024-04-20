@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2250016274393853026}
   - component: {fileID: 4547124241629758383}
   - component: {fileID: 2435333122701760053}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7518871965579355096}
   - component: {fileID: 6230120989909855024}
   - component: {fileID: 3786013469457347738}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3263488845842194624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlacingWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389446991184743113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RealWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2131778069399941042}
   - component: {fileID: 3700233769561139685}
-  m_Layer: 0
+  - component: {fileID: 7231984612747096057}
+  m_Layer: 7
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,6 +293,27 @@ MonoBehaviour:
   placingInvalidMat: {fileID: 2100000, guid: b7d16a1fa33abcb4eb5f59f06524708e, type: 2}
   placingWrapper: {fileID: 2980131854520693687}
   realWrapper: {fileID: 4328388339722702230}
+--- !u!135 &7231984612747096057
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038984757019098786}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6445823187644108800
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +325,7 @@ GameObject:
   - component: {fileID: 685258534873015145}
   - component: {fileID: 5059075991559453401}
   - component: {fileID: 8483799026665883121}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +409,7 @@ GameObject:
   - component: {fileID: 597599545659140780}
   - component: {fileID: 7792534805063671128}
   - component: {fileID: 821757781782107219}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,9 +511,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fed2a702524bb3742bf23198d481fe95, type: 2}
+    - target: {fileID: 2141595645256702268, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462706280519192608, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2642211608586603737, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_Name
       value: FlagPole
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642211608586603737, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833141863349167197, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9161734414329136087, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_LocalPosition.x
@@ -588,14 +626,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 24b7a209ac7aa55468908c7169ac97ce, type: 2}
+    - target: {fileID: 2141595645256702268, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462706280519192608, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2642211608586603737, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_Name
       value: FlagPole (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642211608586603737, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2745384744947670575, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 24b7a209ac7aa55468908c7169ac97ce, type: 2}
+    - target: {fileID: 5833141863349167197, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9161734414329136087, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

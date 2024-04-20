@@ -5,11 +5,26 @@ using UnityEngine;
 public class Mine : MonoBehaviour
 {
     public List<GameObject> _meshes = new List<GameObject>();
+    public GameObject _collider;
+    public GameObject _destroyedVisuals;
 
     public GameObject _innerDebug;
     public GameObject _outerDebug;
 
-    [HideInInspector] int _playerId;
+    public enum State
+    {
+        Active,
+        Triggered
+    }
+
+    [HideInInspector] public State _state;
+    int _playerId;
+    int _runCount;
+
+    private void Awake()
+    {
+        SetState(State.Active);
+    }
 
     public void Show(bool aValue)
     {
@@ -19,9 +34,10 @@ public class Mine : MonoBehaviour
         }
     }
 
-    public void SetPlayerId(int aPlayerId)
+    public void SetPlayerIdAndRun(int aPlayerId, int aRunCount)
     {
         _playerId = aPlayerId;
+        _runCount = aRunCount;
         // Set mesh color
     }
 
@@ -38,6 +54,25 @@ public class Mine : MonoBehaviour
     {
         _innerDebug.SetActive(false);
         _outerDebug.SetActive(false);
+    }
+
+    public void SetState(State aState)
+    {
+        switch (aState)
+        {
+            case State.Active:
+                _collider.SetActive(true);
+                _destroyedVisuals.SetActive(false);
+                break;
+            case State.Triggered:
+                _collider.SetActive(false);
+                _destroyedVisuals.SetActive(true);
+                HideDebug();
+                Show(false);
+                break;
+        }
+
+        _state = aState;
     }
 
     // Start is called before the first frame update
