@@ -23,7 +23,7 @@ public class MineManager : MonoBehaviour
         aPosition = new Vector3(aPosition.x, 0, aPosition.z);
         Mine mine = Instantiate(_minePrefab, _parent);
         mine.transform.position = aPosition;
-        mine._playerId = aPlayerId;
+        mine.SetPlayerId(aPlayerId);
         _mines.Add(mine);
 
         return mine;
