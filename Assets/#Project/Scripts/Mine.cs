@@ -1,3 +1,4 @@
+using Oculus.Haptics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Mine : MonoBehaviour
     public GameObject _destroyedVisuals;
 
     public AudioSource _explosionAudioSource;
+    public HapticClip _explosionHapticClip;
 
     public GameObject _innerDebug;
     public GameObject _outerDebug;
@@ -74,6 +76,8 @@ public class Mine : MonoBehaviour
                 _collider.SetActive(false);
                 _destroyedVisuals.SetActive(true);
                 _explosionAudioSource.Play();
+                if (_explosionHapticClip)
+                    HapticsManager.Instance.PlayHapticClip(_explosionHapticClip);
                 HideDebug();
                 Show(false);
                 break;
