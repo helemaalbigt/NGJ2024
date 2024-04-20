@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public CheckPointManager _checkPointManager;
 
-    public int _numberOfRuns = 3;
+    public int _numberOfRounds = 3;
 
     public MonoState gameOverState;
     public MonoState playerChangeState;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private Dictionary<int, List<Run>> _playerRuns = new Dictionary<int, List<Run>>();
 
-    private int _currentRunCount;
+    private int _currentRoundCount;
     private int _currentPlayerId;
     private float _currentRunStartTime;
     private int _currentRunMinesTriggeredCount;
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        _currentRunCount = 0;
+        _currentRoundCount = 0;
         _currentPlayerId = 0;
     }
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
             return null;
 
         _currentRunAvailableMines--;
-        return MineManager.Instance.Spawn(aPosition, _currentPlayerId, _currentRunCount);
+        return MineManager.Instance.Spawn(aPosition, _currentPlayerId, _currentRoundCount);
     }
 
     public void OnCheckPointEntered(CheckPoint aCheckPoint)
@@ -101,13 +101,13 @@ public class GameManager : MonoBehaviour
         if (_currentPlayerId >= playerCount)
         {
             _currentPlayerId = 0;
-            _currentRunCount++;
+            _currentRoundCount++;
         }
     }
 
     public MonoState GetEndRunState()
     {
-        if (_currentRunCount == _numberOfRuns - 1)
+        if (_currentRoundCount >= _numberOfRounds - 1)
             return gameOverState;
         else
             return playerChangeState;
