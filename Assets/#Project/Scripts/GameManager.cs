@@ -95,6 +95,8 @@ public class GameManager : MonoBehaviour
         run.time = Time.time - _currentRunStartTime;
         _playerRuns[_currentPlayerId].Add(run);
 
+        HapticsManager.Instance.StopAll();
+
         _currentPlayerId++;
         if (_currentPlayerId >= _playerCount)
         {
