@@ -26,6 +26,7 @@ public class PlayerMineCollider : MonoBehaviour
         if (other.gameObject.layer == 6) // Mine = 6
         {
             Die();
+            other.GetComponentInParent<Mine>().SetState(Mine.State.Triggered);
         }
     }
 
@@ -34,5 +35,7 @@ public class PlayerMineCollider : MonoBehaviour
         Debug.Log("Die");
         if (_explosionAudioSource)
             _explosionAudioSource.Play();
+
+
     }
 }

@@ -39,6 +39,9 @@ public class MineManager : MonoBehaviour
         Mine closestMine = null;
         foreach (Mine mine in _mines)
         {
+            if (mine._state != Mine.State.Active)
+                continue;
+
             Vector3 offset = aPosition - mine.transform.position;
             float sqrDist = offset.sqrMagnitude;
             if (sqrDist < distance2)
