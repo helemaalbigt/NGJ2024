@@ -23,8 +23,8 @@ public class Mine : MonoBehaviour
     }
 
     [HideInInspector] public State _state;
-    int _playerId;
-    int _runCount;
+    [HideInInspector] public int _playerId;
+    [HideInInspector] public int _roundCount;
 
     private void Awake()
     {
@@ -39,10 +39,10 @@ public class Mine : MonoBehaviour
         }
     }
 
-    public void SetPlayerIdAndRun(int aPlayerId, int aRunCount)
+    public void SetPlayerIdAndRound(int aPlayerId, int aRoundCount)
     {
         _playerId = aPlayerId;
-        _runCount = aRunCount;
+        _roundCount = aRoundCount;
         // Set mesh color
     }
 

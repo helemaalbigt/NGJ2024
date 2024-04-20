@@ -19,12 +19,12 @@ public class MineManager : MonoBehaviour
         _mines = new List<Mine>();
     }
 
-    public Mine Spawn(Vector3 aPosition, int aPlayerId, int aRunCount)
+    public Mine Spawn(Vector3 aPosition, int aPlayerId, int aRoundCount)
     {
         aPosition = new Vector3(aPosition.x, 0, aPosition.z);
         Mine mine = Instantiate(_minePrefab, _parent);
         mine.transform.position = aPosition;
-        mine.SetPlayerIdAndRun(aPlayerId, aRunCount);
+        mine.SetPlayerIdAndRound(aPlayerId, aRoundCount);
         _mines.Add(mine);
 
         return mine;
