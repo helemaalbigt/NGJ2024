@@ -8,6 +8,8 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class MineDetector : MonoBehaviour
 {
+    public Transform _detectorOrigin;
+
     public float _innerDetectionRadius = 0.1f;
     public float _maxDetectionDistance = 5.0f;
     public HapticClip _hapticClip;
@@ -30,9 +32,9 @@ public class MineDetector : MonoBehaviour
     private void Update()
     {
         Vector3 closestMinePosition = Vector3.zero;
-        if (MineManager.Instance.GetClosestMinePosition(transform.position, out closestMinePosition))
+        if (MineManager.Instance.GetClosestMinePosition(_detectorOrigin.position, out closestMinePosition))
         {
-            float distance = Vector3.Distance(closestMinePosition, transform.position);
+            float distance = Vector3.Distance(closestMinePosition, _detectorOrigin.position);
             float frequency = 0.0f;
             if (distance <= _innerDetectionRadius)
                 frequency = 1.0f;
