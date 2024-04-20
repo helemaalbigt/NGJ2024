@@ -12,10 +12,20 @@ public class GameManager : MonoBehaviour
     public CheckPointManager _checkPointManager;
 
     public int _numberOfRounds = 3;
+    public int _numberOfMinesPerRun = 3;
 
     public MonoState gameOverState;
     public MonoState playerChangeState;
     public int playerCount;
+
+    public enum RunState
+    {
+        Idle,
+        Started,
+        Ended
+    }
+
+    [HideInInspector] RunState runState = RunState.Idle;
 
     private void Awake()
     {
@@ -40,20 +50,9 @@ public class GameManager : MonoBehaviour
     private int _currentRunNextCheckpointIndex;
     private List<Mine> _currentRunTriggeredMines;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //StartGame(1);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void StartGame()
     {
+        runState = RunState.Idle;
         _currentRoundCount = 0;
         _currentPlayerId = 0;
     }
@@ -61,11 +60,16 @@ public class GameManager : MonoBehaviour
     public void StartRun()
     {
         _currentRunTriggeredMines.Clear();
-        _currentRunAvailableMines = 3;
+        _currentRunAvailableMines = _numberOfMinesPerRun;
         _currentRunStartTime = Time.time;
-        _currentRunNextCheckpointIndex = 0;
+
         MineManager.Instance.ShowVisuals(false);
+
+        _currentRunNextCheckpointIndex = 0;
         _checkPointManager.ResetAllCheckpoints();
+        _checkPointManager.SetActiveCheckPoint(_currentRunNextCheckpointIndex);
+
+        runState = RunState.Started;
     }
 
     public void OnMineTriggered(Mine aMine)
@@ -90,6 +94,7 @@ public class GameManager : MonoBehaviour
 
         aCheckPoint.isChecked = true;
         _currentRunNextCheckpointIndex++;
+        _checkPointManager.SetActiveCheckPoint(_currentRunNextCheckpointIndex);
     }
 
     public void OnStartMoundEnter()
@@ -108,6 +113,12 @@ public class GameManager : MonoBehaviour
         _playerRuns[_currentPlayerId].Add(run);
 
         HapticsManager.Instance.StopAll();
+        runState = RunState.Ended;
+    }
+
+    public int GetAvailableMines()
+    {
+        return _currentRunAvailableMines;
     }
 
     public Run GetCurrentRun()
