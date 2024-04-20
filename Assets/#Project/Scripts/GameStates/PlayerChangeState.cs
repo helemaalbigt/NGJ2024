@@ -20,7 +20,7 @@ public class PlayerChangeState : MonoState {
         // Skip with button
         if (InputManager.I.PrimaryButtonDown(Hand.right))
         {
-            GoToState(runState); // Here it should call GameManager.StartRun(_currentPlayerId)
+            GoToState(runState); // Here it should call GameManager.StartRun()
         }
     }
 }
