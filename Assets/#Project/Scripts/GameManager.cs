@@ -1,3 +1,4 @@
+using Rowhouse;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
     public CheckPointManager _checkPointManager;
 
     public int _numberOfRuns = 3;
+
+    public MonoState gameOverState;
+    public MonoState playerChangeState;
 
     private int _playerCount;
 
@@ -103,14 +107,17 @@ public class GameManager : MonoBehaviour
             _currentPlayerId = 0;
             _currentRunCount++;
         }
-
-        if (_currentRunCount == _numberOfRuns - 1)
-            GameOver();
-        else
-            StartRun(_currentPlayerId);
     }
 
-    private void GameOver()
+    public MonoState GetEndRunState()
+    {
+        if (_currentRunCount == _numberOfRuns - 1)
+            return gameOverState;
+        else
+            return playerChangeState;
+    }
+
+    public void OnGameOver()
     {
 
     }
