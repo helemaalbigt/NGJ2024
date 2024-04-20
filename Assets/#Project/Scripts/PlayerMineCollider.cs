@@ -32,6 +32,10 @@ public class PlayerMineCollider : MonoBehaviour
         {
             GameManager.Instance.OnCheckPointEntered(other.GetComponent<CheckPoint>());
         }
+        else if (other.gameObject.layer == 9) // StartMound = 9
+        {
+            GameManager.Instance.OnStartMoundEnter();
+        }
     }
 
     private void Die()

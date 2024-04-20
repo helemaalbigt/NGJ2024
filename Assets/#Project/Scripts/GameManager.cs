@@ -1,6 +1,7 @@
 using Rowhouse;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -22,20 +23,22 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private struct Run
+    public struct Run
     {
         public float time;
-        public int minesTriggered;
+        public List<Mine> minesTriggered;
     }
 
     private Dictionary<int, List<Run>> _playerRuns = new Dictionary<int, List<Run>>();
 
     private int _currentRoundCount;
     private int _currentPlayerId;
+
+    // Run
     private float _currentRunStartTime;
-    private int _currentRunMinesTriggeredCount;
     private int _currentRunAvailableMines;
-    private int _currentRunMissingCheckPointCount;
+    private int _currentRunNextCheckpointIndex;
+    private List<Mine> _currentRunTriggeredMines;
 
     // Start is called before the first frame update
     void Start()
@@ -57,17 +60,17 @@ public class GameManager : MonoBehaviour
 
     public void StartRun()
     {
-        _currentRunMinesTriggeredCount = 0;
+        _currentRunTriggeredMines.Clear();
         _currentRunAvailableMines = 3;
         _currentRunStartTime = Time.time;
-        _currentRunMissingCheckPointCount = _checkPointManager.CheckPointCount;
+        _currentRunNextCheckpointIndex = 0;
         MineManager.Instance.ShowVisuals(false);
         _checkPointManager.ResetAllCheckpoints();
     }
 
     public void OnMineTriggered(Mine aMine)
     {
-        _currentRunMinesTriggeredCount++;
+        _currentRunTriggeredMines.Add(aMine);
         aMine.SetState(Mine.State.Triggered);
     }
 
@@ -82,31 +85,45 @@ public class GameManager : MonoBehaviour
 
     public void OnCheckPointEntered(CheckPoint aCheckPoint)
     {
+        if (aCheckPoint.index != _currentRunNextCheckpointIndex)
+            return;
+
         aCheckPoint.isChecked = true;
-        _currentRunMissingCheckPointCount--;
-        if (_currentRunMissingCheckPointCount == 0)
-            EndRun();
+        _currentRunNextCheckpointIndex++;
+    }
+
+    public void OnStartMoundEnter()
+    {
+        if (_currentRunNextCheckpointIndex != _checkPointManager.CheckPointCount)
+            return;
+
+        EndRun();
     }
 
     public void EndRun()
     {
         Run run;
-        run.minesTriggered = _currentRunMinesTriggeredCount;
+        run.minesTriggered = new List<Mine>(_currentRunTriggeredMines);
         run.time = Time.time - _currentRunStartTime;
         _playerRuns[_currentPlayerId].Add(run);
 
         HapticsManager.Instance.StopAll();
+    }
 
+    public Run GetCurrentRun()
+    {
+        return _playerRuns[_currentPlayerId].Last();
+    }
+
+    public MonoState GetEndRunState()
+    {
         _currentPlayerId++;
         if (_currentPlayerId >= playerCount)
         {
             _currentPlayerId = 0;
             _currentRoundCount++;
         }
-    }
 
-    public MonoState GetEndRunState()
-    {
         if (_currentRoundCount >= _numberOfRounds - 1)
             return gameOverState;
         else
