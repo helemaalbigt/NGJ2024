@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731743, g: 0.13414763, b: 0.12107882, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -237,11 +237,6 @@ MonoBehaviour:
   _skeleton: {fileID: 90537395}
   _head: {fileID: 816793992}
   _playerMineCollider: {fileID: 2030498071}
---- !u!1 &146423573 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6479669788408351605, guid: 7b8a3f3eaccd6e84bbf7966bba36b766, type: 3}
-  m_PrefabInstance: {fileID: 1603641058763808693}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &229829496
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkPointPrefab: {fileID: 3700233769561139685, guid: 9ac3df4582a683943b05518a65ebbeb7, type: 3}
-  startMound: {fileID: 146423573}
+  startMound: {fileID: 947068732}
   checkPoints: []
 --- !u!1 &240899999
 GameObject:
@@ -335,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMound: {fileID: 629674888}
   playerHead: {fileID: 816793992}
-  placeCheckPointsState: {fileID: 1655987826}
+  placeCheckPointsState: {fileID: 1229828880}
 --- !u!1 &304594357
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +945,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 734977493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &947068732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6479669788408351605, guid: 7b8a3f3eaccd6e84bbf7966bba36b766, type: 3}
+  m_PrefabInstance: {fileID: 1603641058763808693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &976754016
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 976754018}
   - component: {fileID: 976754017}
   m_Layer: 0
-  m_Name: PlacingMinesState
+  m_Name: PlacingState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -997,6 +997,53 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1831862780}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1020712710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020712712}
+  - component: {fileID: 1020712711}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1020712711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020712710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f005b7892e86fa44cbe7f640d1be889f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _checkPointManager: {fileID: 229829498}
+  _numberOfCheckPoints: 3
+  _numberOfRuns: 3
+--- !u!4 &1020712712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020712710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1111347418
 GameObject:
@@ -1173,6 +1220,53 @@ MonoBehaviour:
   mouseSensitivity: 100
   camera: {fileID: 816793992}
   rightHand: {fileID: 51276346}
+--- !u!1 &1229828879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229828881}
+  - component: {fileID: 1229828880}
+  m_Layer: 0
+  m_Name: PlaceCheckPointsState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1229828880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229828879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c8ddff3a8be5e4c892334276581faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPointManager: {fileID: 229829498}
+  rightHand: {fileID: 51276346}
+  next: {fileID: 976754017}
+--- !u!4 &1229828881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229828879}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1831862780}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1271246150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,53 +1509,6 @@ Transform:
   - {fileID: 1896102315}
   m_Father: {fileID: 51276346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1655987824
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1655987825}
-  - component: {fileID: 1655987826}
-  m_Layer: 0
-  m_Name: PlaceCheckPointsState
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1655987825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655987824}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1831862780}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1655987826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655987824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1c8ddff3a8be5e4c892334276581faa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkPointManager: {fileID: 229829498}
-  rightHand: {fileID: 51276346}
-  next: {fileID: 976754017}
 --- !u!1 &1818941181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,53 +1539,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 51276346}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1831719637
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1831719639}
-  - component: {fileID: 1831719638}
-  m_Layer: 0
-  m_Name: SceneFinder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1831719638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831719637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9fdd203725452e42b15bdb09479b8e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  head: {fileID: 816793992}
-  leftHand: {fileID: 1483711666}
-  rightHand: {fileID: 51276346}
---- !u!4 &1831719639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831719637}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3700461, y: 1.017555, z: -0.7034266}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831862778
 GameObject:
@@ -1586,9 +1586,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 240900000}
-  - {fileID: 1655987825}
   - {fileID: 976754018}
   - {fileID: 696369377}
+  - {fileID: 1229828881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1864363900
@@ -2102,6 +2102,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1020712712}
   - {fileID: 1111347423}
   - {fileID: 1976041452}
   - {fileID: 884641136}
@@ -2112,4 +2113,3 @@ SceneRoots:
   - {fileID: 229829497}
   - {fileID: 1603641058763808693}
   - {fileID: 1831862780}
-  - {fileID: 1831719639}

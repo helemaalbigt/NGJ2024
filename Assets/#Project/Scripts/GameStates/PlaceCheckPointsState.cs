@@ -22,10 +22,10 @@ public class PlaceCheckPointsState : MonoState {
     private void Update() {
         HandlePlacement();
 
-
         if (checkPointManager.CheckPointCount > 0) {
             //TODO: replace with button press
             if (InputManager.I.PrimaryButtonDown(Hand.right)) {
+                GameManager.Instance.StartGame(1);
                 GoToState(next);
             }
         }
