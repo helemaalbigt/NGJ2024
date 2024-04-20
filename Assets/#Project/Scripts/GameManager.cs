@@ -2,6 +2,7 @@ using Rowhouse;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,12 +14,11 @@ public class GameManager : MonoBehaviour
 
     public MonoState gameOverState;
     public MonoState playerChangeState;
-
-    private int _playerCount;
+    public int playerCount;
 
     private void Awake()
     {
-        _playerCount = 1;
+        playerCount = 1;
         Instance = this;
     }
 
@@ -49,9 +49,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void StartGame(int aPlayerCount)
+    public void StartGame()
     {
-        _playerCount = aPlayerCount;
         _currentRunCount = 0;
 
         // We should wait for player confirmation or something
@@ -102,7 +101,7 @@ public class GameManager : MonoBehaviour
         HapticsManager.Instance.StopAll();
 
         _currentPlayerId++;
-        if (_currentPlayerId >= _playerCount)
+        if (_currentPlayerId >= playerCount)
         {
             _currentPlayerId = 0;
             _currentRunCount++;

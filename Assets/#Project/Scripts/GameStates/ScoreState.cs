@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class ScoreState : MonoState {
     
-    public MonoState playerChangeState;
     public GameObject detector;
     public BodyManager bodyManager;
 
