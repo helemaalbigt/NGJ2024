@@ -2489,7 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyManager: {fileID: 90537397}
-  scoreState: {fileID: 0}
+  scoreState: {fileID: 1395477245}
 --- !u!1 &2030498070
 GameObject:
   m_ObjectHideFlags: 0
