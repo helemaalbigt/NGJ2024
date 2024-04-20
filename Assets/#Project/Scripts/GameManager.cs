@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerCount = 1;
+        playerCount = 2;
         Instance = this;
     }
 

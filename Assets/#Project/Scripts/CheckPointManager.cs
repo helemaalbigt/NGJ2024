@@ -45,6 +45,9 @@ public class CheckPointManager : MonoBehaviour {
     }
 
     public void ClearAllCheckpoints() {
+        foreach (var cp in checkPoints) {
+            Destroy(cp.gameObject);
+        }
         checkPoints.Clear();
     }
 
