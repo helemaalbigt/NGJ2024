@@ -16,6 +16,7 @@ public class MineManager : MonoBehaviour
     {
         Instance = this;
         _parent = new GameObject("[MineParent]").transform;
+        _mines = new List<Mine>();
     }
 
     public Mine Spawn(Vector3 aPosition, int aPlayerId)

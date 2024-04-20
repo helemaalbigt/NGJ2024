@@ -82,8 +82,8 @@ MonoBehaviour:
   _maxDetectionDistance: 5
   _hapticClip: {fileID: 0}
   _audioClip: {fileID: 8300000, guid: 8247ed4bca8208b4e9221b085c4e9db1, type: 3}
-  _minFeedbackInterval: 0.1
-  _maxFeedbackInterval: 2
+  _minFeedbackInterval: 0.2
+  _maxFeedbackInterval: 4
 --- !u!82 &422181805069687046
 AudioSource:
   m_ObjectHideFlags: 0

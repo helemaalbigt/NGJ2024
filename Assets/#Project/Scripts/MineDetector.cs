@@ -4,6 +4,7 @@ using UnityEngine;
 using Oculus.Haptics;
 using System;
 using Unity.VisualScripting;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class MineDetector : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class MineDetector : MonoBehaviour
     public float _maxDetectionDistance = 5.0f;
     public HapticClip _hapticClip;
     public AudioClip _audioClip;
-    public float _minFeedbackInterval = 0.1f;
-    public float _maxFeedbackInterval = 2.0f;
+    public float _minFeedbackInterval = 0.2f;
+    public float _maxFeedbackInterval = 4.0f;
 
     private Guid _hapticGuid = Guid.Empty;
     private AudioSource _audioSource = null;
@@ -40,8 +41,9 @@ public class MineDetector : MonoBehaviour
             else
                 frequency = Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionDistance, distance);
 
-            if (frequency != _feedbackFrequency)
-                ChangeFeedbackFrequency(frequency);
+            ChangeFeedbackFrequency(frequency);
+
+            //Debug.Log("Distance: " + distance + " Frequency: " + frequency);
         }
         else
         {
@@ -70,18 +72,23 @@ public class MineDetector : MonoBehaviour
         }
         else if (aFrequency == 1.0f)
         {
-            _audioSource.loop = true;
-            _audioSource.Play();
-            _lastFeedbackPlayTimestamp = Time.realtimeSinceStartup;
-            if (_hapticClip)
+            if (!_audioSource.loop)
             {
-                _hapticGuid = HapticsManager.Instance.PlayHapticClip(_hapticClip, true, Controller.Right);
+                _audioSource.loop = true;
+                _audioSource.Play();
+                _lastFeedbackPlayTimestamp = Time.realtimeSinceStartup;
+                if (_hapticClip)
+                {
+                    _hapticGuid = HapticsManager.Instance.PlayHapticClip(_hapticClip, true, Controller.Right);
+                }
             }
         }
         else
         {
-            float feedbackInterval = Mathf.InverseLerp(_feedbackFrequency, _minFeedbackInterval, _maxFeedbackInterval);
-            if (Time.realtimeSinceStartup - _lastFeedbackPlayTimestamp >= feedbackInterval)
+            float feedbackInterval = Mathf.Lerp(_minFeedbackInterval, _maxFeedbackInterval, _feedbackFrequency);
+            float timeSinceFeedback = Time.realtimeSinceStartup - _lastFeedbackPlayTimestamp;
+            //Debug.Log("Feedback Interval: " + feedbackInterval + "Time since: " + timeSinceFeedback);
+            if (timeSinceFeedback >= feedbackInterval)
             {
                 if (_hapticClip)
                 {
@@ -90,8 +97,11 @@ public class MineDetector : MonoBehaviour
 
                 if (_audioClip && _audioSource)
                 {
+                    _audioSource.loop = false;
                     _audioSource.Play();
                 }
+
+                _lastFeedbackPlayTimestamp = Time.realtimeSinceStartup;
             }
         }
     }

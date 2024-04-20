@@ -13,6 +13,7 @@ public class HapticsManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        _players = new Dictionary<Guid, HapticClipPlayer>();
     }
 
     public Guid PlayHapticClip(HapticClip aClip, bool aIsLooping = false, Controller aController = Controller.Both)
