@@ -15,4 +15,5 @@ public class SceneFinder : MonoBehaviour {
     public Transform leftHand;
     public Transform rightHand;
     public GameObject detector;
+    public GameObject minesAvailableUI;
 }

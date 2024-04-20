@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerChangeState : MonoState {
     
     public MonoState runState;
-    public GameObject detector;
     public BodyManager bodyManager;
     public VrButton toNext;
     public PageGroup pageGroup;
@@ -15,7 +14,8 @@ public class PlayerChangeState : MonoState {
     public CheckPointManager checkPointManager;
 
     private void OnEnable() {
-        detector.SetActive(false);
+        SceneFinder.I.detector.SetActive(false);
+        SceneFinder.I.minesAvailableUI.SetActive(false);
         bodyManager.EnableMineCollision(false);
         pageGroup.OpenPage(page);
         

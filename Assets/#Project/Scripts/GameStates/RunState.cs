@@ -15,6 +15,7 @@ public class RunState : MonoState
    private void OnEnable() {
       GameManager.Instance.StartRun();
       SceneFinder.I.detector.SetActive(true);
+      SceneFinder.I.minesAvailableUI.SetActive(true);
       bodyManager.EnableMineCollision(true);
       pageGroup.OpenPage(page);
    }

@@ -15,6 +15,7 @@ public class LobbyState : MonoState {
    
    private void OnEnable() {
       SceneFinder.I.detector.SetActive(false);
+      SceneFinder.I.minesAvailableUI.SetActive(false);
       pageGroup.OpenPage(page);
    }
 

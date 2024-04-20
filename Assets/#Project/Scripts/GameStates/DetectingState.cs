@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class DetectingState : MonoState {
    public MonoState placingState;
-   public GameObject detector;
-    public BodyManager bodyManager;
+   public BodyManager bodyManager;
 
    private void OnEnable() {
-      detector.SetActive(true);
       bodyManager.EnableMineCollision(true);
+      SceneFinder.I.detector.SetActive(true);
+      SceneFinder.I.minesAvailableUI.SetActive(true);
     }
 
-   private void Update() {
+    private void Update() {
 
       if (InputManager.I.PrimaryButtonDown(Hand.right)) {
          GoToState(placingState);
