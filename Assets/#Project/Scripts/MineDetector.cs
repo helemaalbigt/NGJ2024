@@ -20,6 +20,8 @@ public class MineDetector : MonoBehaviour
     private float _lastFeedbackPlayTimestamp;
     private float _feedbackFrequency;
 
+    private Mine _closestMine;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -29,10 +31,15 @@ public class MineDetector : MonoBehaviour
 
     private void Update()
     {
-        Vector3 closestMinePosition = Vector3.zero;
-        if (MineManager.Instance.GetClosestMinePosition(_detectorOrigin.position, out closestMinePosition))
+        Mine closestMine = MineManager.Instance.GetClosestMine(_detectorOrigin.position);
+        if (closestMine)
         {
-            float distance = Vector3.Distance(closestMinePosition, _detectorOrigin.position);
+            if (_closestMine && closestMine != _closestMine)
+                _closestMine.HideDebug();
+
+            _closestMine = closestMine;
+
+            float distance = Vector3.Distance(closestMine.transform.position, _detectorOrigin.position);
             float frequency = 0.0f;
             if (distance <= _innerDetectionRadius)
                 frequency = 1.0f;
@@ -42,8 +49,7 @@ public class MineDetector : MonoBehaviour
                 frequency = Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionDistance, distance);
 
             ChangeFeedbackFrequency(frequency);
-
-            //Debug.Log("Distance: " + distance + " Frequency: " + frequency);
+            closestMine.ShowDebug(_innerDetectionRadius, _maxDetectionDistance);
         }
         else
         {
@@ -93,7 +99,7 @@ public class MineDetector : MonoBehaviour
         {
             float feedbackInterval = Mathf.Lerp(_minFeedbackInterval, _maxFeedbackInterval, _feedbackFrequency);
             float timeSinceFeedback = Time.realtimeSinceStartup - _lastFeedbackPlayTimestamp;
-            //Debug.Log("Feedback Interval: " + feedbackInterval + "Time since: " + timeSinceFeedback);
+            Debug.Log("Feedback Interval: " + feedbackInterval + "Time since: " + timeSinceFeedback);
             if (timeSinceFeedback >= feedbackInterval)
             {
                 if (_hapticClip)

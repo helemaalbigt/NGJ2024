@@ -30,14 +30,13 @@ public class MineManager : MonoBehaviour
         return mine;
     }
 
-    public bool GetClosestMinePosition(Vector3 aPosition, out Vector3 aClosestMinePosition)
+    public Mine GetClosestMine(Vector3 aPosition)
     {
-        aClosestMinePosition = Vector3.zero;
-
         if (_mines.Count == 0)
-            return false;
+            return null;
 
         float distance2 = float.MaxValue;
+        Mine closestMine = null;
         foreach (Mine mine in _mines)
         {
             Vector3 offset = aPosition - mine.transform.position;
@@ -45,11 +44,11 @@ public class MineManager : MonoBehaviour
             if (sqrDist < distance2)
             {
                 distance2 = sqrDist;
-                aClosestMinePosition = mine.transform.position;
+                closestMine = mine;
             }
         }
 
-        return true;
+        return closestMine;
     }
 
     public void UnspawnAll()

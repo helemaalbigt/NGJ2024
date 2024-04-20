@@ -6,6 +6,9 @@ public class Mine : MonoBehaviour
 {
     public List<GameObject> _meshes = new List<GameObject>();
 
+    public GameObject _innerDebug;
+    public GameObject _outerDebug;
+
     [HideInInspector] int _playerId;
 
     public void Show(bool aValue)
@@ -20,6 +23,21 @@ public class Mine : MonoBehaviour
     {
         _playerId = aPlayerId;
         // Set mesh color
+    }
+
+    public void ShowDebug(float anInner, float anOuter)
+    {
+        _innerDebug.transform.localScale = new Vector3(anInner, _innerDebug.transform.localScale.y, anInner);
+        _outerDebug.transform.localScale = new Vector3(anOuter, _outerDebug.transform.localScale.y, anOuter);
+
+        _innerDebug.SetActive(true);
+        _outerDebug.SetActive(true);
+    }
+
+    public void HideDebug()
+    {
+        _innerDebug.SetActive(false);
+        _outerDebug.SetActive(false);
     }
 
     // Start is called before the first frame update

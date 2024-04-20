@@ -83,7 +83,7 @@ MonoBehaviour:
   _innerDetectionRadius: 0.1
   _maxDetectionDistance: 5
   _hapticClip: {fileID: 2460798210113038985, guid: 65264c2cfa4c84a099065c62afd9b223, type: 3}
-  _audioClip: {fileID: 8300000, guid: 8247ed4bca8208b4e9221b085c4e9db1, type: 3}
+  _audioClip: {fileID: 8300000, guid: 6bdafe3d955473246bef37cfcf5af0e2, type: 3}
   _minFeedbackInterval: 0.2
   _maxFeedbackInterval: 4
 --- !u!82 &422181805069687046
