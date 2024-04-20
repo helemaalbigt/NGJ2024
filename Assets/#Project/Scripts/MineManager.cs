@@ -10,17 +10,22 @@ public class MineManager : MonoBehaviour
     public Mine _minePrefab;
 
     private List<Mine> _mines;
-
+    private Transform _parent;
+    
     private void Awake()
     {
         Instance = this;
+        _parent = new GameObject("[MineParent]").transform;
     }
 
-    public void Spawn(Transform aPosition)
+    public Mine Spawn(Vector3 aPosition)
     {
-        aPosition.position = new Vector3(aPosition.position.x, 0, aPosition.position.z);
-        Mine mine = Instantiate(_minePrefab, aPosition);
+        aPosition = new Vector3(aPosition.x, 0, aPosition.z);
+        Mine mine = Instantiate(_minePrefab, _parent);
+        mine.transform.position = aPosition;
         _mines.Add(mine);
+
+        return mine;
     }
 
     public bool GetClosestMinePosition(Vector3 aPosition, out Vector3 aClosestMinePosition)

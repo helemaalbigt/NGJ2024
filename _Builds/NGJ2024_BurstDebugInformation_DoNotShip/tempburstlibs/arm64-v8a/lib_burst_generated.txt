@@ -16,6 +16,7 @@ Library: C:\Users\vanbo\Documents\_MyDocuments\2024\Leasure\Unity\NGJ2024\Temp\B
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=Newtonsoft.Json;
+--assembly-defines=Oculus.Haptics;
 --assembly-defines=Oculus.Interaction;
 --assembly-defines=Oculus.Interaction.OVR;
 --assembly-defines=Oculus.VR;
@@ -63,6 +64,7 @@ Library: C:\Users\vanbo\Documents\_MyDocuments\2024\Leasure\Unity\NGJ2024\Temp\B
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=Newtonsoft.Json;
+--assembly-defines=Oculus.Haptics;
 --assembly-defines=Oculus.Interaction;
 --assembly-defines=Oculus.Interaction.OVR;
 --assembly-defines=Oculus.VR;
