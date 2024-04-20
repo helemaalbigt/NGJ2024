@@ -8,10 +8,12 @@ public class MineDetector : MonoBehaviour
 {
     public Transform _detectorOrigin;
 
-    public float _innerDetectionRadius = 0.1f;
-    public float _maxDetectionDistance = 5.0f;
     public HapticClip _hapticClip;
     public AudioClip _audioClip;
+
+    public float _innerDetectionRadius = 0.1f;
+    public float _maxDetectionRadius = 5.0f;
+    public AnimationCurve _feedbackFalloffCurve;
     public float _minFeedbackInterval = 0.2f;
     public float _maxFeedbackInterval = 4.0f;
 
@@ -43,13 +45,13 @@ public class MineDetector : MonoBehaviour
             float frequency = 0.0f;
             if (distance <= _innerDetectionRadius)
                 frequency = 1.0f;
-            else if (distance > _maxDetectionDistance)
+            else if (distance > _maxDetectionRadius)
                 frequency = 0.0f;
             else
-                frequency = Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionDistance, distance);
+                frequency = _feedbackFalloffCurve.Evaluate(Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionRadius, distance));
 
             ChangeFeedbackFrequency(frequency);
-            closestMine.ShowDebug(_innerDetectionRadius, _maxDetectionDistance);
+            closestMine.ShowDebug(_innerDetectionRadius, _maxDetectionRadius);
         }
         else
         {
