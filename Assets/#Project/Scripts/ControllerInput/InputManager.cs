@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
             if (I == null)
                 I = this;
             
-            _input.enabled = true;
+            GetInput().enabled = true;
         }
 
         #endregion
@@ -129,8 +129,13 @@ public class InputManager : MonoBehaviour
         private InputSource GetInput() {
             if (I == null)
                 I = this;
-
+            
+            #if UNITY_EDITOR
+            _input = _mockInput;
+            #else
             _input = _oculusInput;
+            #endif
+            
 
             _input.enabled = true;
             return _input;

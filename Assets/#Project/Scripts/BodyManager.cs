@@ -15,7 +15,8 @@ public class BodyManager : MonoBehaviour
     void Update() {
         UpdateBones();
         VrDebug.DrawPoint(GetFootPosition());
-        _playerMineCollider.SetPosition(GetFootPosition());
+        if(_playerMineCollider != null)
+            _playerMineCollider.SetPosition(GetFootPosition());
     }
 
     public Vector3 GetFootPosition() {
