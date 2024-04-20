@@ -52,14 +52,11 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         _currentRunCount = 0;
-
-        // We should wait for player confirmation or something
-        StartRun(0);
+        _currentPlayerId = 0;
     }
 
-    public void StartRun(int aPlayerId)
+    public void StartRun()
     {
-        _currentPlayerId = aPlayerId;
         _currentRunMinesTriggeredCount = 0;
         _currentRunAvailableMines = 3;
         _currentRunStartTime = Time.time;
