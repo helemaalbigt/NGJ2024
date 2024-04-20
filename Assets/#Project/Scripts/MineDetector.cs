@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Haptics;
 using System;
+using Unity.VisualScripting;
 
 public class MineDetector : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class MineDetector : MonoBehaviour
     public float _maxDetectionDistance = 5.0f;
     public HapticClip _hapticClip;
     public AudioClip _audioClip;
+    public float _minFeedbackInterval = 0.1f;
+    public float _maxFeedbackInterval = 2.0f;
 
     private Guid _hapticGuid = Guid.Empty;
     private AudioSource _audioSource = null;
+    private float _lastFeedbackPlayTimestamp;
+    private float _feedbackFrequency;
 
     private void Awake()
     {
@@ -27,44 +32,66 @@ public class MineDetector : MonoBehaviour
         if (MineManager.Instance.GetClosestMinePosition(transform.position, out closestMinePosition))
         {
             float distance = Vector3.Distance(closestMinePosition, transform.position);
+            float frequency = 0.0f;
             if (distance <= _innerDetectionRadius)
-                ChangeFeedbackFrequency(1.0f);
+                frequency = 1.0f;
             else if (distance > _maxDetectionDistance)
-                ChangeFeedbackFrequency(0.0f);
+                frequency = 0.0f;
             else
-                ChangeFeedbackFrequency(Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionDistance, distance));
+                frequency = Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionDistance, distance);
+
+            if (frequency != _feedbackFrequency)
+                ChangeFeedbackFrequency(frequency);
+        }
+        else
+        {
+            ChangeFeedbackFrequency(0.0f);
         }
     }
 
     private void ChangeFeedbackFrequency(float aFrequency)
     {
-        if (_hapticClip)
+        _feedbackFrequency = aFrequency;
+
+        if (aFrequency == 0.0f)
         {
-            if (_hapticGuid == Guid.Empty && aFrequency != 0.0f)
+            if (_hapticGuid != Guid.Empty)
+            {
+                HapticsManager.Instance.Stop(_hapticGuid);
+                _hapticGuid = Guid.Empty;
+            }
+
+            if (_audioClip && _audioSource)
+            {
+                _audioSource.Stop();
+            }
+
+            _lastFeedbackPlayTimestamp = 0;
+        }
+        else if (aFrequency == 1.0f)
+        {
+            _audioSource.loop = true;
+            _audioSource.Play();
+            _lastFeedbackPlayTimestamp = Time.realtimeSinceStartup;
+            if (_hapticClip)
             {
                 _hapticGuid = HapticsManager.Instance.PlayHapticClip(_hapticClip, true, Controller.Right);
             }
-
-            if (_hapticGuid != Guid.Empty)
-            {
-                if (aFrequency == 0.0f)
-                {
-                    HapticsManager.Instance.Stop(_hapticGuid);
-                    _hapticGuid = Guid.Empty;
-                }
-                else
-                    HapticsManager.Instance.ChangeFrequency(_hapticGuid, aFrequency);
-            }
         }
-
-        if (_audioClip && _audioSource)
+        else
         {
-            if (aFrequency == 0.0f)
-                _audioSource.Stop();
-            else
+            float feedbackInterval = Mathf.InverseLerp(_feedbackFrequency, _minFeedbackInterval, _maxFeedbackInterval);
+            if (Time.realtimeSinceStartup - _lastFeedbackPlayTimestamp >= feedbackInterval)
             {
-                _audioSource.pitch = aFrequency;
-                _audioSource.Play();
+                if (_hapticClip)
+                {
+                    _hapticGuid = HapticsManager.Instance.PlayHapticClip(_hapticClip, false, Controller.Right);
+                }
+
+                if (_audioClip && _audioSource)
+                {
+                    _audioSource.Play();
+                }
             }
         }
     }
