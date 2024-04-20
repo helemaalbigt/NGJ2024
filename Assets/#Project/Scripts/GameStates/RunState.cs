@@ -8,12 +8,15 @@ public class RunState : MonoState
 {
    public BodyManager bodyManager;
    public MonoState scoreState;
+   public PageGroup pageGroup;
+   public Page page;
    private Mine _placingMine;
    
    private void OnEnable() {
       GameManager.Instance.StartRun();
       SceneFinder.I.detector.SetActive(true);
       bodyManager.EnableMineCollision(true);
+      pageGroup.OpenPage(page);
    }
    
    void Update()
@@ -26,6 +29,7 @@ public class RunState : MonoState
       if (_placingMine != null) {
          _placingMine.transform.position =  GetSpawnPos();
          if (InputManager.I.TriggerUp(Hand.left)) {
+            _placingMine.SetState(Mine.State.Active);
             _placingMine = null;
          }
       }

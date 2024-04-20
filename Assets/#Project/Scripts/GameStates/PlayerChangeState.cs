@@ -10,10 +10,17 @@ public class PlayerChangeState : MonoState {
     public GameObject detector;
     public BodyManager bodyManager;
     public VrButton toNext;
+    public PageGroup pageGroup;
+    public Page page;
+    public CheckPointManager checkPointManager;
 
     private void OnEnable() {
         detector.SetActive(false);
         bodyManager.EnableMineCollision(false);
+        pageGroup.OpenPage(page);
+        
+        MineManager.Instance.ShowVisuals(false);
+        checkPointManager.ResetAllCheckpoints();
     }
 
     void Update()
@@ -22,5 +29,11 @@ public class PlayerChangeState : MonoState {
         {
             GoToState(runState);
         }
+        
+#if UNITY_EDITOR
+        if (InputManager.I.PrimaryButtonDown(Hand.right)) {
+            GoToState(runState);
+        }
+#endif
     }
 }

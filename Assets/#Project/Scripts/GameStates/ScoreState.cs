@@ -12,6 +12,9 @@ public class ScoreState : MonoState {
     
     public MonoState gameOverState;
     public MonoState playerChangeState;
+    
+    public PageGroup pageGroup;
+    public Page page;
 
     private bool _isGameOver;
 
@@ -19,6 +22,7 @@ public class ScoreState : MonoState {
         detector.SetActive(false);
         bodyManager.EnableMineCollision(false);
         _isGameOver = GameManager.Instance.IsGameOver();
+        pageGroup.OpenPage(page);
     }
 
     void Update()
@@ -27,5 +31,12 @@ public class ScoreState : MonoState {
             GameManager.Instance.SetNextRunState();
             GoToState(_isGameOver ? gameOverState : playerChangeState);
         }
+        
+#if UNITY_EDITOR
+        if (InputManager.I.PrimaryButtonDown(Hand.right)) {
+            GameManager.Instance.SetNextRunState();
+            GoToState(_isGameOver ? gameOverState : playerChangeState);
+        }
+#endif
     }
 }

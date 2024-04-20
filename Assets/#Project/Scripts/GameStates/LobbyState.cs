@@ -27,5 +27,12 @@ public class LobbyState : MonoState {
          GameManager.Instance.StartGame();
          GoToState(runState);
       }
+      
+#if UNITY_EDITOR
+      if (InputManager.I.PrimaryButtonDown(Hand.right)) {
+         GameManager.Instance.StartGame();
+         GoToState(runState);
+      }
+#endif
    }
 }

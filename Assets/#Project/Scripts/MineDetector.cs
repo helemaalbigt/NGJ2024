@@ -62,7 +62,7 @@ public class MineDetector : MonoBehaviour
                 frequency = _feedbackFalloffCurve.Evaluate(Mathf.InverseLerp(_innerDetectionRadius, _maxDetectionRadius, distance));
 
             ChangeFeedbackFrequency(frequency);
-            closestMine.ShowDebug(_innerDetectionRadius, _maxDetectionRadius);
+            // closestMine.ShowDebug(_innerDetectionRadius, _maxDetectionRadius);
         }
         else
         {

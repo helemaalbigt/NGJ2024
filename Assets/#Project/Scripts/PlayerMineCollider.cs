@@ -31,7 +31,7 @@ public class PlayerMineCollider : MonoBehaviour
         }
         else if (other.gameObject.layer == 7) // CheckPoint = 7
         {
-            GameManager.Instance.OnCheckPointEntered(other.GetComponent<CheckPoint>());
+            GameManager.Instance.OnCheckPointEntered(other.GetComponentInParent<CheckPoint>());
         }
         else if (other.gameObject.layer == 9) // StartMound = 9
         {

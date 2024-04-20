@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         playerCount = 2;
         Instance = this;
+        _currentRunTriggeredMines = new List<Mine>();
     }
 
     public struct Run
@@ -108,6 +109,9 @@ public class GameManager : MonoBehaviour
         Run run;
         run.minesTriggered = new List<Mine>(_currentRunTriggeredMines);
         run.time = Time.time - _currentRunStartTime;
+        if (!_playerRuns.ContainsKey(_currentPlayerId)) {
+            _playerRuns[_currentPlayerId] = new List<Run>();
+        } 
         _playerRuns[_currentPlayerId].Add(run);
 
         HapticsManager.Instance.StopAll();
@@ -117,6 +121,10 @@ public class GameManager : MonoBehaviour
     public int GetAvailableMines()
     {
         return _currentRunAvailableMines;
+    }
+
+    public int GetCurrentRound() {
+        return _currentRoundCount;
     }
 
     public Run GetCurrentRun()

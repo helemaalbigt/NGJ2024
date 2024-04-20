@@ -15,6 +15,7 @@ public class Mine : MonoBehaviour
 
     public enum State
     {
+        Idle,
         Active,
         Triggered
     }
@@ -25,7 +26,7 @@ public class Mine : MonoBehaviour
 
     private void Awake()
     {
-        SetState(State.Active);
+        SetState(State.Idle);
     }
 
     public void Show(bool aValue)
@@ -62,6 +63,9 @@ public class Mine : MonoBehaviour
     {
         switch (aState)
         {
+            case State.Idle:
+                _collider.SetActive(false);
+                break;
             case State.Active:
                 _collider.SetActive(true);
                 _destroyedVisuals.SetActive(false);
