@@ -35,7 +35,7 @@ public class BodyManager : MonoBehaviour
                     _bones.Add(ovrBone.Id, ovrBone.Transform);
                 } else {
                     _bones[ovrBone.Id] = ovrBone.Transform;
-                    VrDebug.DrawAxis(ovrBone.Transform.position, ovrBone.Transform.rotation, 0.01f);
+                    //VrDebug.DrawAxis(ovrBone.Transform.position, ovrBone.Transform.rotation, 0.01f);
                 }
             }
         }
