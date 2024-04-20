@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Haptics;
 using System;
-using Unity.VisualScripting;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class MineDetector : MonoBehaviour
 {

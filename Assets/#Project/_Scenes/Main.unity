@@ -971,7 +971,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectingState: {fileID: 696369378}
-  mineManager: {fileID: 2093545112}
   rightHand: {fileID: 51276346}
   detector: {fileID: 2137092766}
 --- !u!4 &976754018
