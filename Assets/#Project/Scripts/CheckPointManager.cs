@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class CheckPointManager : MonoBehaviour {
     public CheckPoint checkPointPrefab;
@@ -55,8 +56,16 @@ public class CheckPointManager : MonoBehaviour {
     {
         foreach (var checkPoint in checkPoints)
         {
-            checkPoint.isActive = true;
+            checkPoint.isChecked = false;
             checkPoint.isActive = false;
+        }
+    }
+
+    public void SetActiveCheckPoint(int anIndex)
+    {
+        foreach (var checkPoint in checkPoints)
+        {
+            checkPoint.isActive = checkPoint.index == anIndex;
         }
     }
 }
