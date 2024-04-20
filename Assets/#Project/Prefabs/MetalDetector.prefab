@@ -80,10 +80,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectorOrigin: {fileID: 3221787707289870880}
-  _innerDetectionRadius: 0.3
-  _maxDetectionDistance: 2.5
   _hapticClip: {fileID: 2460798210113038985, guid: 65264c2cfa4c84a099065c62afd9b223, type: 3}
-  _audioClip: {fileID: 8300000, guid: 6bdafe3d955473246bef37cfcf5af0e2, type: 3}
+  _audioClip: {fileID: 8300000, guid: e5877a04a964c3e48a29c4585b41080d, type: 3}
+  _innerDetectionRadius: 0.3
+  _maxDetectionRadius: 2.5
+  _feedbackFalloffCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _minFeedbackInterval: 0.1
   _maxFeedbackInterval: 3
 --- !u!82 &422181805069687046
