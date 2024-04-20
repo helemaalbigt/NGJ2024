@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMineCollider : MonoBehaviour
 {
+    public AudioSource _explosionAudioSource;
+
     public void SetPosition(Vector3 aPosition)
     {
         transform.position = aPosition;
@@ -20,5 +22,7 @@ public class PlayerMineCollider : MonoBehaviour
     private void Die()
     {
         Debug.Log("Die");
+        if (_explosionAudioSource)
+            _explosionAudioSource.Play();
     }
 }
