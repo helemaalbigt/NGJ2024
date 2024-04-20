@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detectorOrigin: {fileID: 3221787707289870880}
   _hapticClip: {fileID: 2460798210113038985, guid: 65264c2cfa4c84a099065c62afd9b223, type: 3}
-  _audioClip: {fileID: 8300000, guid: 6bdafe3d955473246bef37cfcf5af0e2, type: 3}
+  _audioClip: {fileID: 8300000, guid: e5877a04a964c3e48a29c4585b41080d, type: 3}
   _innerDetectionRadius: 0.3
   _maxDetectionRadius: 2.5
   _feedbackFalloffCurve:
