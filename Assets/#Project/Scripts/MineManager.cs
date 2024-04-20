@@ -18,11 +18,12 @@ public class MineManager : MonoBehaviour
         _parent = new GameObject("[MineParent]").transform;
     }
 
-    public Mine Spawn(Vector3 aPosition)
+    public Mine Spawn(Vector3 aPosition, int aPlayerId)
     {
         aPosition = new Vector3(aPosition.x, 0, aPosition.z);
         Mine mine = Instantiate(_minePrefab, _parent);
         mine.transform.position = aPosition;
+        mine._playerId = aPlayerId;
         _mines.Add(mine);
 
         return mine;
