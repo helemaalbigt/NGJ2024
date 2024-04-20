@@ -9,12 +9,14 @@ public class PlacingState : MonoState {
     public MonoState detectingState;
     public Transform rightHand;
     public GameObject detector;
+    public BodyManager bodyManager;
 
     private Mine _placingMine;
 
     private void OnEnable() {
         detector.SetActive(false);
         MineManager.Instance.ShowVisuals(true);
+        bodyManager.EnableMineCollision(false);
     }
 
     void Update()

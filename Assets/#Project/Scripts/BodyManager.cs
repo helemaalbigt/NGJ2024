@@ -10,13 +10,19 @@ public class BodyManager : MonoBehaviour
     public Transform _head;
     public PlayerMineCollider _playerMineCollider;
     
-    private Dictionary<OVRSkeleton.BoneId, Transform> _bones = new Dictionary<OVRSkeleton.BoneId, Transform>(); 
+    private Dictionary<OVRSkeleton.BoneId, Transform> _bones = new Dictionary<OVRSkeleton.BoneId, Transform>();
 
     void Update() {
         UpdateBones();
         VrDebug.DrawPoint(GetFootPosition());
         if(_playerMineCollider != null)
             _playerMineCollider.SetPosition(GetFootPosition());
+    }
+
+    public void EnableMineCollision(bool aValue)
+    {
+        if (_playerMineCollider)
+            _playerMineCollider.Enable(aValue);
     }
 
     public Vector3 GetFootPosition() {

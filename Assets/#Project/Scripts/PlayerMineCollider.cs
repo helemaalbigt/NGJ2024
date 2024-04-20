@@ -6,6 +6,13 @@ public class PlayerMineCollider : MonoBehaviour
 {
     public AudioSource _explosionAudioSource;
 
+    private bool _isEnabled = false;
+
+    public void Enable(bool aValue)
+    {
+        _isEnabled = aValue;
+    }
+
     public void SetPosition(Vector3 aPosition)
     {
         transform.position = aPosition;
@@ -13,6 +20,9 @@ public class PlayerMineCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!_isEnabled)
+            return;
+
         if (other.gameObject.layer == 6) // Mine = 6
         {
             Die();

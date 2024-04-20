@@ -80,12 +80,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectorOrigin: {fileID: 3221787707289870880}
-  _innerDetectionRadius: 0.1
-  _maxDetectionDistance: 5
+  _innerDetectionRadius: 0.3
+  _maxDetectionDistance: 2.5
   _hapticClip: {fileID: 2460798210113038985, guid: 65264c2cfa4c84a099065c62afd9b223, type: 3}
   _audioClip: {fileID: 8300000, guid: 6bdafe3d955473246bef37cfcf5af0e2, type: 3}
-  _minFeedbackInterval: 0.2
-  _maxFeedbackInterval: 4
+  _minFeedbackInterval: 0.1
+  _maxFeedbackInterval: 3
 --- !u!82 &422181805069687046
 AudioSource:
   m_ObjectHideFlags: 0

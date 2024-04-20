@@ -99,7 +99,7 @@ public class MineDetector : MonoBehaviour
         {
             float feedbackInterval = Mathf.Lerp(_minFeedbackInterval, _maxFeedbackInterval, _feedbackFrequency);
             float timeSinceFeedback = Time.realtimeSinceStartup - _lastFeedbackPlayTimestamp;
-            Debug.Log("Feedback Interval: " + feedbackInterval + "Time since: " + timeSinceFeedback);
+            //Debug.Log("Feedback Interval: " + feedbackInterval + "Time since: " + timeSinceFeedback);
             if (timeSinceFeedback >= feedbackInterval)
             {
                 if (_hapticClip)
