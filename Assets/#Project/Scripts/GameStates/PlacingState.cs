@@ -15,6 +15,7 @@ public class PlacingState : MonoState {
 
     private void OnEnable() {
         detector.SetActive(false);
+        MineManager.Instance.ShowVisuals(true);
     }
 
     void Update()

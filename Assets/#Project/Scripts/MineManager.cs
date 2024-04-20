@@ -59,4 +59,12 @@ public class MineManager : MonoBehaviour
 
         _mines.Clear();
     }
+
+    public void ShowVisuals(bool aValue)
+    {
+        foreach(Mine mine in _mines)
+        {
+            mine.Show(aValue);
+        }
+    }
 }

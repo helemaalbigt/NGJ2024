@@ -10,6 +10,7 @@ public class DetectingState : MonoState {
 
    private void OnEnable() {
       detector.SetActive(true);
+        MineManager.Instance.ShowVisuals(false);
    }
 
    private void Update() {
