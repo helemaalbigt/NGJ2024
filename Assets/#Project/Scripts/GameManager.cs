@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         Ended
     }
 
-    [HideInInspector] RunState runState = RunState.Idle;
+    [HideInInspector] public RunState runState = RunState.Idle;
 
     private void Awake()
     {
@@ -124,6 +124,10 @@ public class GameManager : MonoBehaviour
         return _playerRuns[_currentPlayerId].Last();
     }
 
+    public int GetCurrentPlayerId() {
+        return _currentPlayerId;
+    }
+    
     public bool IsGameOver()
     {
         int nextPlayerId = _currentPlayerId + 1;
@@ -133,7 +137,7 @@ public class GameManager : MonoBehaviour
             roundCount++;
         }
 
-        return roundCount >= _numberOfRounds - 1;
+        return roundCount >= _numberOfRounds;
     }
 
     public void SetNextRunState()

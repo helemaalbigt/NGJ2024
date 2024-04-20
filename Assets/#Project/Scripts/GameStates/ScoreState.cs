@@ -8,7 +8,8 @@ public class ScoreState : MonoState {
     
     public GameObject detector;
     public BodyManager bodyManager;
-
+    public VrButton toNext;
+    
     public MonoState gameOverState;
     public MonoState playerChangeState;
 
@@ -22,10 +23,7 @@ public class ScoreState : MonoState {
 
     void Update()
     {
-        // Show the score
-        // Skip with button
-        if (InputManager.I.PrimaryButtonDown(Hand.right))
-        {
+        if (toNext.interactableState == InteractableState.clicked) {
             GameManager.Instance.SetNextRunState();
             GoToState(_isGameOver ? gameOverState : playerChangeState);
         }

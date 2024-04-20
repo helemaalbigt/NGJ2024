@@ -9,6 +9,7 @@ public class PlayerChangeState : MonoState {
     public MonoState runState;
     public GameObject detector;
     public BodyManager bodyManager;
+    public VrButton toNext;
 
     private void OnEnable() {
         detector.SetActive(false);
@@ -17,10 +18,9 @@ public class PlayerChangeState : MonoState {
 
     void Update()
     {
-        // Skip with button
-        if (InputManager.I.PrimaryButtonDown(Hand.right))
+        if (toNext.interactableState == InteractableState.clicked)
         {
-            GoToState(runState); // Here it should call GameManager.StartRun()
+            GoToState(runState);
         }
     }
 }

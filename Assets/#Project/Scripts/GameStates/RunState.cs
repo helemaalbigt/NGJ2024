@@ -7,7 +7,7 @@ using UnityEngine;
 public class RunState : MonoState
 {
    public BodyManager bodyManager;
-   
+   public MonoState scoreState;
    private Mine _placingMine;
    
    private void OnEnable() {
@@ -28,6 +28,10 @@ public class RunState : MonoState
          if (InputManager.I.TriggerUp(Hand.left)) {
             _placingMine = null;
          }
+      }
+
+      if (GameManager.Instance.runState == GameManager.RunState.Ended) {
+         GoToState(scoreState);
       }
    }
 
