@@ -2155,7 +2155,7 @@ MonoBehaviour:
   head: {fileID: 816793992}
   leftHand: {fileID: 1483711666}
   rightHand: {fileID: 51276346}
-  detector: {fileID: 0}
+  detector: {fileID: 2137092766}
 --- !u!4 &1831719639
 Transform:
   m_ObjectHideFlags: 0
