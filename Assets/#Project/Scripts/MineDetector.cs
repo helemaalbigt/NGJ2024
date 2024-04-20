@@ -79,6 +79,12 @@ public class MineDetector : MonoBehaviour
                 _lastFeedbackPlayTimestamp = Time.realtimeSinceStartup;
                 if (_hapticClip)
                 {
+                    if (_hapticGuid != Guid.Empty)
+                    {
+                        HapticsManager.Instance.Stop(_hapticGuid);
+                        _hapticGuid = Guid.Empty;
+                    }
+
                     _hapticGuid = HapticsManager.Instance.PlayHapticClip(_hapticClip, true, Controller.Right);
                 }
             }
@@ -92,6 +98,12 @@ public class MineDetector : MonoBehaviour
             {
                 if (_hapticClip)
                 {
+                    if (_hapticGuid != Guid.Empty)
+                    {
+                        HapticsManager.Instance.Stop(_hapticGuid);
+                        _hapticGuid = Guid.Empty;
+                    }
+
                     _hapticGuid = HapticsManager.Instance.PlayHapticClip(_hapticClip, false, Controller.Right);
                 }
 
