@@ -6,15 +6,22 @@ public class CheckPointManager : MonoBehaviour {
     public CheckPoint checkPointPrefab;
     public GameObject startMound;
 
+
+    public int CheckPointCount => checkPoints.Count;
+
+    [Space(20)]
+    [SerializeField]
     private List<CheckPoint> checkPoints = new List<CheckPoint>();
 
     private const float MinMargin = 2f;
 
-    public bool TryAddCheckPoint(Vector3 pos) {
-        pos.y = 0;
-        if (IsValidPlacementPos(pos)) {
-            var checkPoint = Instantiate(checkPointPrefab, transform);
-            checkPoint.transform.localPosition = pos;
+
+    public CheckPoint CreateCheckPoint() {
+        return Instantiate(checkPointPrefab, transform);
+    }
+    
+    public bool TryAddCheckPoint(CheckPoint checkPoint) {
+        if (IsValidPlacementPos(checkPoint.transform.position)) {
             checkPoint.index = checkPoints.Count;
             checkPoints.Add(checkPoint);
             return true;
@@ -40,10 +47,5 @@ public class CheckPointManager : MonoBehaviour {
 
     public void ClearAllCheckpoints() {
         checkPoints.Clear();
-    }
-    
-    void Update()
-    {
-        
     }
 }

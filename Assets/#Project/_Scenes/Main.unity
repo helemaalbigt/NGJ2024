@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731743, g: 0.13414763, b: 0.12107882, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -237,6 +237,11 @@ MonoBehaviour:
   _skeleton: {fileID: 90537395}
   _head: {fileID: 816793992}
   _playerMineCollider: {fileID: 2030498071}
+--- !u!1 &146423573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6479669788408351605, guid: 7b8a3f3eaccd6e84bbf7966bba36b766, type: 3}
+  m_PrefabInstance: {fileID: 1603641058763808693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &229829496
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,8 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7690f5c9bc72241ab0efc78b58e548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointPrefab: {fileID: 0}
-  startMound: {fileID: 0}
+  checkPointPrefab: {fileID: 3700233769561139685, guid: 9ac3df4582a683943b05518a65ebbeb7, type: 3}
+  startMound: {fileID: 146423573}
+  checkPoints: []
 --- !u!1 &240899999
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMound: {fileID: 629674888}
   playerHead: {fileID: 816793992}
+  placeCheckPointsState: {fileID: 1655987826}
 --- !u!1 &304594357
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +961,7 @@ GameObject:
   - component: {fileID: 976754018}
   - component: {fileID: 976754017}
   m_Layer: 0
-  m_Name: PlacingState
+  m_Name: PlacingMinesState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,6 +1415,53 @@ Transform:
   - {fileID: 1896102315}
   m_Father: {fileID: 51276346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1655987824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655987825}
+  - component: {fileID: 1655987826}
+  m_Layer: 0
+  m_Name: PlaceCheckPointsState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1655987825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655987824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1831862780}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1655987826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655987824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c8ddff3a8be5e4c892334276581faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPointManager: {fileID: 229829498}
+  rightHand: {fileID: 51276346}
+  next: {fileID: 976754017}
 --- !u!1 &1818941181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1493,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 51276346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1831719637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1831719639}
+  - component: {fileID: 1831719638}
+  m_Layer: 0
+  m_Name: SceneFinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1831719638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831719637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fdd203725452e42b15bdb09479b8e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 816793992}
+  leftHand: {fileID: 1483711666}
+  rightHand: {fileID: 51276346}
+--- !u!4 &1831719639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831719637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3700461, y: 1.017555, z: -0.7034266}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831862778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b310b9024126c4189253f0c2cf6fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startState: {fileID: 976754017}
+  startState: {fileID: 240900001}
   startOnEnable: 1
   logStateChanges: 0
 --- !u!4 &1831862780
@@ -1485,6 +1586,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 240900000}
+  - {fileID: 1655987825}
   - {fileID: 976754018}
   - {fileID: 696369377}
   m_Father: {fileID: 0}
@@ -2010,3 +2112,4 @@ SceneRoots:
   - {fileID: 229829497}
   - {fileID: 1603641058763808693}
   - {fileID: 1831862780}
+  - {fileID: 1831719639}

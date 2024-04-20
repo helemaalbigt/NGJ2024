@@ -16,7 +16,7 @@ namespace Rowhouse
 
         private MonoState _currentState;
 
-        public void OnEnable() {
+        public void Start() {
             if (startOnEnable) {
                 GoToStart();
             }
