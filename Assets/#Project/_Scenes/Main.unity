@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731743, g: 0.13414763, b: 0.12107882, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2504,7 +2504,7 @@ GameObject:
   - component: {fileID: 2030498072}
   - component: {fileID: 2030498075}
   m_Layer: 0
-  m_Name: MineCollider
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2522,7 +2522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece5d422a1e751f489026b9a0351e891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionAudioSource: {fileID: 2030498072}
+  _explosionFeedbackAudioSource: {fileID: 2030498072}
+  _explosionFeedbackAudioDelay: 0
 --- !u!82 &2030498072
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2533,7 +2534,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 938c3122f4ce702478821fb73b1c3711, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 932ab5a9e53a436498697bf7a3290748, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

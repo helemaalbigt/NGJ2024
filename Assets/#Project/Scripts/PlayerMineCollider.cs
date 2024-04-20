@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMineCollider : MonoBehaviour
 {
-    public AudioSource _explosionAudioSource;
+    public AudioSource _explosionFeedbackAudioSource;
+    public float _explosionFeedbackAudioDelay = 0.0f;
 
     private bool _isEnabled = false;
 
@@ -41,7 +42,7 @@ public class PlayerMineCollider : MonoBehaviour
     private void Die()
     {
         Debug.Log("Die");
-        if (_explosionAudioSource)
-            _explosionAudioSource.Play();
+        if (_explosionFeedbackAudioSource)
+            _explosionFeedbackAudioSource.PlayDelayed(_explosionFeedbackAudioDelay);
     }
 }

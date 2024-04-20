@@ -8,6 +8,8 @@ public class Mine : MonoBehaviour
     public GameObject _collider;
     public GameObject _destroyedVisuals;
 
+    public AudioSource _explosionAudioSource;
+
     public GameObject _innerDebug;
     public GameObject _outerDebug;
 
@@ -67,6 +69,7 @@ public class Mine : MonoBehaviour
             case State.Triggered:
                 _collider.SetActive(false);
                 _destroyedVisuals.SetActive(true);
+                _explosionAudioSource.Play();
                 HideDebug();
                 Show(false);
                 break;
