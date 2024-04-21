@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMineCollider : MonoBehaviour
 {
+    public OVRPassthroughLayer _passthroughLayer;
+    public AnimationCurve _explosionCameraEffectCurve;
+    public float _explosionCameraEffectDuration = 1.0f;
     public AudioSource _explosionFeedbackAudioSource;
     public float _explosionFeedbackAudioDelay = 0.0f;
 
@@ -26,7 +29,7 @@ public class PlayerMineCollider : MonoBehaviour
 
         if (other.gameObject.layer == 6) // Mine = 6
         {
-            Die();
+            SufferDamage();
             GameManager.Instance.OnMineTriggered(other.GetComponentInParent<Mine>());
         }
         else if (other.gameObject.layer == 7) // CheckPoint = 7
@@ -39,10 +42,31 @@ public class PlayerMineCollider : MonoBehaviour
         }
     }
 
-    private void Die()
+    private void SufferDamage()
     {
-        Debug.Log("Die");
+        StartCoroutine(ExplosionFeedback_Coroutine());
+    }
+
+    private IEnumerator ExplosionFeedback_Coroutine()
+    {
         if (_explosionFeedbackAudioSource)
             _explosionFeedbackAudioSource.PlayDelayed(_explosionFeedbackAudioDelay);
+
+        yield return new WaitForEndOfFrame();
+
+        _passthroughLayer.colorMapEditorType = OVRPassthroughLayer.ColorMapEditorType.ColorAdjustment;
+
+        float elapsedTime = 0.0f;
+        while (elapsedTime <= _explosionCameraEffectDuration)
+        {
+            _passthroughLayer.colorMapEditorBrightness = _explosionCameraEffectCurve.Evaluate(elapsedTime / _explosionCameraEffectDuration);
+            elapsedTime += Time.deltaTime;
+        }
+        _passthroughLayer.colorMapEditorBrightness = _explosionCameraEffectCurve.Evaluate(1.0f);
+
+        yield return new WaitForEndOfFrame();
+
+        _passthroughLayer.colorMapEditorBrightness = 0.0f;
+        _passthroughLayer.colorMapEditorType = OVRPassthroughLayer.ColorMapEditorType.None;
     }
 }
