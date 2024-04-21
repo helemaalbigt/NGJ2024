@@ -10,18 +10,21 @@ public class ScoreState : MonoState {
     public VrButton toNext;
     
     public MonoState gameOverState;
+    public MonoState roundOverState;
     public MonoState playerChangeState;
     
     public PageGroup pageGroup;
     public Page page;
 
     private bool _isGameOver;
+    private bool _isRoundOver;
 
     private void OnEnable() {
         SceneFinder.I.detector.SetActive(false);
         SceneFinder.I.minesAvailableUI.SetActive(false);
         bodyManager.EnableMineCollision(false);
         _isGameOver = GameManager.Instance.IsGameOver();
+        _isRoundOver = GameManager.Instance.IsRoundOver();
         pageGroup.OpenPage(page);
     }
 
@@ -29,13 +32,23 @@ public class ScoreState : MonoState {
     {
         if (toNext.interactableState == InteractableState.clicked) {
             GameManager.Instance.SetNextRunState();
-            GoToState(_isGameOver ? gameOverState : playerChangeState);
+            if (_isGameOver)
+                GoToState(gameOverState);
+            else if (_isRoundOver)
+                GoToState(roundOverState);
+            else
+                GoToState(playerChangeState);
         }
         
 #if UNITY_EDITOR
         if (InputManager.I.PrimaryButtonDown(Hand.right)) {
             GameManager.Instance.SetNextRunState();
-            GoToState(_isGameOver ? gameOverState : playerChangeState);
+            if (_isGameOver)
+                GoToState(gameOverState);
+            else if (_isRoundOver)
+                GoToState(roundOverState);
+            else
+                GoToState(playerChangeState);
         }
 #endif
     }
