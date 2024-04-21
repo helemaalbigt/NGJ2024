@@ -6,6 +6,6 @@ using UnityEngine.UI;
 public class RoundViewBig : MonoBehaviour {
     public Text text;
     void Update() {
-        text.text = $"ROUND {GameManager.Instance.GetCurrentRound() + 1}";
+        text.text = $"ROUND {GameManager.Instance.GetCurrentRound()}";//DIRTY FIX FOR WRONG ROUND INDEX
     }
 }

@@ -650,6 +650,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -380
       objectReference: {fileID: 0}
+    - target: {fileID: 3514804876411333490, guid: 2c17fda8342540f449357a79f608e777, type: 3}
+      propertyPath: loserPrefab
+      value: 
+      objectReference: {fileID: 8910699719627952659, guid: 2a0b84ef33ce9cc4ba3cde620b57f245, type: 3}
     - target: {fileID: 3527998872912546105, guid: 2c17fda8342540f449357a79f608e777, type: 3}
       propertyPath: m_Name
       value: '-'
