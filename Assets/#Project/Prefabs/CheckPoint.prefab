@@ -171,6 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3263488845842194624}
+  - component: {fileID: 6037476853060464455}
   m_Layer: 7
   m_Name: PlacingWrapper
   m_TagString: Untagged
@@ -195,6 +196,20 @@ Transform:
   - {fileID: 8761385828152658997}
   m_Father: {fileID: 2131778069399941042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6037476853060464455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980131854520693687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f41e8388e5af4f4887bc8e3a93ca2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <DepthBiasValue>k__BackingField: 0.05
+  DoesAffectChildren: 1
 --- !u!1 &4328388339722702230
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,10 +905,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cab70e909febd4a01af8f0e6d5e2a5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3389629682162439120}
   m_SourcePrefab: {fileID: 100100000, guid: cab70e909febd4a01af8f0e6d5e2a5be, type: 3}
 --- !u!4 &2702256516971507027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cab70e909febd4a01af8f0e6d5e2a5be, type: 3}
   m_PrefabInstance: {fileID: 2453035186295622328}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3371937526647519209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cab70e909febd4a01af8f0e6d5e2a5be, type: 3}
+  m_PrefabInstance: {fileID: 2453035186295622328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3389629682162439120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3371937526647519209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f41e8388e5af4f4887bc8e3a93ca2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <DepthBiasValue>k__BackingField: 0.05
+  DoesAffectChildren: 0

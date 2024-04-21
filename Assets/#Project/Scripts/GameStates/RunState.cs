@@ -10,6 +10,7 @@ public class RunState : MonoState
    public MonoState scoreState;
    public PageGroup pageGroup;
    public Page page;
+   public MusicManager musicManager;
    private Mine _placingMine;
    
    private void OnEnable() {
@@ -18,8 +19,14 @@ public class RunState : MonoState
       SceneFinder.I.minesAvailableUI.SetActive(true);
       bodyManager.EnableMineCollision(true);
       pageGroup.OpenPage(page);
+      
+      musicManager.PlayIntroAndLoop();
    }
-   
+
+   private void OnDisable() {
+      musicManager.Stop();
+   }
+
    void Update()
    {
       if (InputManager.I.TriggerDown(Hand.left)) {
