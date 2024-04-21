@@ -22,6 +22,7 @@ public class ScoreView : MonoBehaviour {
 
     private int _minesTotal = 0;
     private float _penaltyTotal = 0f;
+    private List<GameObject> attributions = new List<GameObject>();
 
     private void OnEnable() {
         StartCoroutine(ShowScores());
@@ -56,6 +57,7 @@ public class ScoreView : MonoBehaviour {
             var m = minesTriggeredPerPlayer[i];
             if (m > 0) {
                 var attr = Instantiate(playerAttribution, parent);
+                attributions.Add(attr.gameObject);
                 attr.playerId = i;
                 for (int j = 0; j < m; j++) {
                     yield return new WaitForSeconds(0.5f);
@@ -73,5 +75,12 @@ public class ScoreView : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void OnDisable() {
+        foreach (var at in attributions) {
+            Destroy(at);
+        }
+        attributions.Clear();
     }
 }
