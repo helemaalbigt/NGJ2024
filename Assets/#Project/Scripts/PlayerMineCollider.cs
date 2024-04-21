@@ -22,7 +22,6 @@ public class PlayerMineCollider : MonoBehaviour
     public void OnEnable()
     {
         SetExplosionCameraEffectAlpha(0.0f);
-        StartCoroutine(ExplosionFeedback_Coroutine());
     }
 
     public void OnDisable()
