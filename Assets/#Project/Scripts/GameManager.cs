@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
         runState = RunState.Idle;
         _currentRoundCount = 0;
         _currentPlayerId = 0;
+
+        _leaderBoard.Clear();
+        for (int i = 0; i < playerCount; i++)
+        {
+            _leaderBoard.Add(i, 0.0f);
+        }
     }
 
     public void StartRun()
@@ -148,26 +154,8 @@ public class GameManager : MonoBehaviour
 
     public List<KeyValuePair<int, float>> GetOrderedLeaderBoard()
     {
-        List<KeyValuePair<int, float>> result = new List<KeyValuePair<int, float>>();
-        foreach (var item in _leaderBoard)
-        {
-            if (result.Count == 0)
-            {
-                result.Add(item);
-            }
-            else
-            {
-                for (int i = 0; i < result.Count; i++)
-                {
-                    if (result[i].Value < item.Value)
-                        continue;
-
-                    result.Insert(i, item);
-                }
-            }
-        }
-
-        return result;
+        var orderedLeaderBoard = from entry in _leaderBoard orderby entry.Value ascending select entry;
+        return orderedLeaderBoard.ToList();
     }
     
     public bool IsGameOver()
