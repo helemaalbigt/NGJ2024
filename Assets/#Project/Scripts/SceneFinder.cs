@@ -16,4 +16,5 @@ public class SceneFinder : MonoBehaviour {
     public Transform rightHand;
     public GameObject detector;
     public GameObject minesAvailableUI;
+    public StartMound startMound;
 }

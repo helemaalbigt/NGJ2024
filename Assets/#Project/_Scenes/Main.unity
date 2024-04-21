@@ -801,6 +801,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bac7bb4b3dbe54ea29e29babfda2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &423978379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5333649611892511446, guid: 7b8a3f3eaccd6e84bbf7966bba36b766, type: 3}
+  m_PrefabInstance: {fileID: 1603641058763808693}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146423573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba480106c37c43d4db95c84c41f67935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &446998317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,6 +2727,7 @@ MonoBehaviour:
   rightHand: {fileID: 51276346}
   detector: {fileID: 2137092766}
   minesAvailableUI: {fileID: 1192553264}
+  startMound: {fileID: 423978379}
 --- !u!4 &1831719639
 Transform:
   m_ObjectHideFlags: 0
@@ -3360,6 +3372,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1490325890554208260, guid: 7b8a3f3eaccd6e84bbf7966bba36b766, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1551919516184707342, guid: 7b8a3f3eaccd6e84bbf7966bba36b766, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
