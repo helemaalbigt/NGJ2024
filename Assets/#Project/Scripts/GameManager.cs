@@ -25,13 +25,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public RunState runState = RunState.Idle;
 
-    private void Awake()
-    {
-        playerCount = 2;
-        Instance = this;
-        _currentRunTriggeredMines = new List<Mine>();
-    }
-
     public struct Run
     {
         public float time;
@@ -48,6 +41,15 @@ public class GameManager : MonoBehaviour
     private int _currentRunAvailableMines;
     private int _currentRunNextCheckpointIndex;
     private List<Mine> _currentRunTriggeredMines;
+    private List<Mine> _currentRunPlacedMines;
+
+    private void Awake()
+    {
+        playerCount = 2;
+        Instance = this;
+        _currentRunTriggeredMines = new List<Mine>();
+        _currentRunPlacedMines = new List<Mine>();
+    }
 
     public void StartGame()
     {
@@ -58,6 +60,11 @@ public class GameManager : MonoBehaviour
 
     public void StartRun()
     {
+        foreach(Mine mine in _currentRunPlacedMines)
+        {
+            mine.SetState(Mine.State.Active);
+        }
+        _currentRunPlacedMines.Clear();
         _currentRunTriggeredMines.Clear();
         _currentRunAvailableMines = _numberOfMinesPerRun;
         _currentRunStartTime = Time.time;
@@ -83,7 +90,9 @@ public class GameManager : MonoBehaviour
             return null;
 
         _currentRunAvailableMines--;
-        return MineManager.Instance.Spawn(aPosition, _currentPlayerId, _currentRoundCount);
+        Mine mine = MineManager.Instance.Spawn(aPosition, _currentPlayerId, _currentRoundCount);
+        _currentRunPlacedMines.Add(mine);
+        return mine;
     }
 
     public void OnCheckPointEntered(CheckPoint aCheckPoint)

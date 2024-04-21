@@ -25,12 +25,12 @@ public class RunState : MonoState
       if (InputManager.I.TriggerDown(Hand.left)) {
          var spawnPos = GetSpawnPos();
          _placingMine = GameManager.Instance.PlaceMine(spawnPos);
-      }
+         _placingMine.SetState(Mine.State.Idle);
+        }
 
       if (_placingMine != null) {
          _placingMine.transform.position =  GetSpawnPos();
          if (InputManager.I.TriggerUp(Hand.left)) {
-            _placingMine.SetState(Mine.State.Active);
             _placingMine = null;
          }
       }
