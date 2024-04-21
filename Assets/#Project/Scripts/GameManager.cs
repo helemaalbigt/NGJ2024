@@ -157,12 +157,17 @@ public class GameManager : MonoBehaviour
         var orderedLeaderBoard = from entry in _leaderBoard orderby entry.Value ascending select entry;
         return orderedLeaderBoard.ToList();
     }
+
+    public bool IsRoundOver()
+    {
+        int nextPlayerId = _currentPlayerId + 1;
+        return nextPlayerId >= playerCount;
+    }
     
     public bool IsGameOver()
     {
-        int nextPlayerId = _currentPlayerId + 1;
         int roundCount = _currentRoundCount;
-        if (nextPlayerId >= playerCount)
+        if (IsRoundOver())
         {
             roundCount++;
         }
