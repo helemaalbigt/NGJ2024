@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     }
 
     private Dictionary<int, List<Run>> _playerRuns = new Dictionary<int, List<Run>>();
+    private Dictionary<int, float> _leaderBoard = new Dictionary<int, float>();
 
     private int _currentRoundCount;
     private int _currentPlayerId;
@@ -56,6 +57,12 @@ public class GameManager : MonoBehaviour
         runState = RunState.Idle;
         _currentRoundCount = 0;
         _currentPlayerId = 0;
+
+        _leaderBoard.Clear();
+        for (int i = 0; i < playerCount; i++)
+        {
+            _leaderBoard.Add(i, 0.0f);
+        }
     }
 
     public void StartRun()
@@ -144,6 +151,12 @@ public class GameManager : MonoBehaviour
     public int GetCurrentPlayerId() {
         return _currentPlayerId;
     }
+
+    public List<KeyValuePair<int, float>> GetOrderedLeaderBoard()
+    {
+        var orderedLeaderBoard = from entry in _leaderBoard orderby entry.Value ascending select entry;
+        return orderedLeaderBoard.ToList();
+    }
     
     public bool IsGameOver()
     {
@@ -159,6 +172,12 @@ public class GameManager : MonoBehaviour
 
     public void SetNextRunState()
     {
+        _leaderBoard[_currentPlayerId] += GetCurrentRun().time;
+        foreach (Mine mine in GetCurrentRun().minesTriggered)
+        {
+            ProcessMineScore(mine._playerId, _currentPlayerId);
+        }
+
         _currentPlayerId++;
         if (_currentPlayerId >= playerCount)
         {
@@ -170,5 +189,17 @@ public class GameManager : MonoBehaviour
     public void OnGameOver()
     {
 
+    }
+
+    public void ProcessMineScore(int instigatorId, int victimId)
+    {
+        if (instigatorId == victimId)
+        {
+            _leaderBoard[victimId] = Mathf.Max(0.0f, _leaderBoard[victimId] + ScoreModifiers.SelfHitPenality);
+            return;
+        }
+
+        _leaderBoard[victimId] = Mathf.Max(0.0f, _leaderBoard[victimId] + ScoreModifiers.HitPenality);
+        _leaderBoard[instigatorId] = Mathf.Max(0.0f, _leaderBoard[instigatorId] - ScoreModifiers.HitBonus);
     }
 }

@@ -1,12 +1,14 @@
+using MyBox;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMineCollider : MonoBehaviour
 {
-    public OVRPassthroughLayer _passthroughLayer;
+    public Image _explosionCameraEffectImage;
     public AnimationCurve _explosionCameraEffectCurve;
-    public float _explosionCameraEffectDuration = 1.0f;
+    public float _explosionCameraEffectDuration = 2.0f;
     public AudioSource _explosionFeedbackAudioSource;
     public float _explosionFeedbackAudioDelay = 0.0f;
 
@@ -15,6 +17,16 @@ public class PlayerMineCollider : MonoBehaviour
     public void Enable(bool aValue)
     {
         _isEnabled = aValue;
+    }
+
+    public void OnEnable()
+    {
+        SetExplosionCameraEffectAlpha(0.0f);
+    }
+
+    public void OnDisable()
+    {
+        SetExplosionCameraEffectAlpha(0.0f);
     }
 
     public void SetPosition(Vector3 aPosition)
@@ -54,19 +66,31 @@ public class PlayerMineCollider : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        _passthroughLayer.colorMapEditorType = OVRPassthroughLayer.ColorMapEditorType.ColorAdjustment;
+        SetExplosionCameraEffectAlpha(0.0f);
 
         float elapsedTime = 0.0f;
         while (elapsedTime <= _explosionCameraEffectDuration)
         {
-            _passthroughLayer.colorMapEditorBrightness = _explosionCameraEffectCurve.Evaluate(elapsedTime / _explosionCameraEffectDuration);
+            float alpha = _explosionCameraEffectCurve.Evaluate(elapsedTime / _explosionCameraEffectDuration);
+            SetExplosionCameraEffectAlpha(alpha);
             elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
-        _passthroughLayer.colorMapEditorBrightness = _explosionCameraEffectCurve.Evaluate(1.0f);
+        SetExplosionCameraEffectAlpha(_explosionCameraEffectCurve.Evaluate(1.0f));
 
         yield return new WaitForEndOfFrame();
 
-        _passthroughLayer.colorMapEditorBrightness = 0.0f;
-        _passthroughLayer.colorMapEditorType = OVRPassthroughLayer.ColorMapEditorType.None;
+        SetExplosionCameraEffectAlpha(0.0f);
+    }
+
+    void SetExplosionCameraEffectAlpha(float alpha)
+    {
+        // Here you assign a color to the referenced material,
+        // changing the color of your renderer
+        Color color = _explosionCameraEffectImage.color;
+        color.a = Mathf.Clamp(alpha, 0, 1);
+        _explosionCameraEffectImage.color = color;
+
+        Debug.Log("A: " + color.a);
     }
 }
