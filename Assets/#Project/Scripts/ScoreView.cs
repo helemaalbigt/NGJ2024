@@ -25,6 +25,10 @@ public class ScoreView : MonoBehaviour {
     private List<GameObject> attributions = new List<GameObject>();
 
     private void OnEnable() {
+        attributions.Clear();
+        _minesTotal = 0;
+        _penaltyTotal = 0f;
+        
         StartCoroutine(ShowScores());
     }
 
@@ -82,5 +86,7 @@ public class ScoreView : MonoBehaviour {
             Destroy(at);
         }
         attributions.Clear();
+        _minesTotal = 0;
+        _penaltyTotal = 0f;
     }
 }
