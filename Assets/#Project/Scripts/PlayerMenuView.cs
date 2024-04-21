@@ -28,5 +28,13 @@ public class PlayerMenuView : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         text.text = GameManager.Instance.playerCount + " players";
+
+        if (Input.GetKeyDown(KeyCode.Keypad3)) {
+            GameManager.Instance.playerCount = 3;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Keypad4)) {
+            GameManager.Instance.playerCount = 4;
+        }
     }
 }
