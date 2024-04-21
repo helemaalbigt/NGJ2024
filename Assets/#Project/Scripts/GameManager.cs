@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     }
 
     private Dictionary<int, List<Run>> _playerRuns = new Dictionary<int, List<Run>>();
+    private Dictionary<int, float> _leaderBoard = new Dictionary<int, float>();
 
     private int _currentRoundCount;
     private int _currentPlayerId;
@@ -144,6 +145,30 @@ public class GameManager : MonoBehaviour
     public int GetCurrentPlayerId() {
         return _currentPlayerId;
     }
+
+    public List<KeyValuePair<int, float>> GetOrderedLeaderBoard()
+    {
+        List<KeyValuePair<int, float>> result = new List<KeyValuePair<int, float>>();
+        foreach (var item in _leaderBoard)
+        {
+            if (result.Count == 0)
+            {
+                result.Add(item);
+            }
+            else
+            {
+                for (int i = 0; i < result.Count; i++)
+                {
+                    if (result[i].Value < item.Value)
+                        continue;
+
+                    result.Insert(i, item);
+                }
+            }
+        }
+
+        return result;
+    }
     
     public bool IsGameOver()
     {
@@ -159,6 +184,12 @@ public class GameManager : MonoBehaviour
 
     public void SetNextRunState()
     {
+        _leaderBoard[_currentPlayerId] += GetCurrentRun().time;
+        foreach (Mine mine in GetCurrentRun().minesTriggered)
+        {
+            ProcessMineScore(mine._playerId, _currentPlayerId);
+        }
+
         _currentPlayerId++;
         if (_currentPlayerId >= playerCount)
         {
@@ -170,5 +201,17 @@ public class GameManager : MonoBehaviour
     public void OnGameOver()
     {
 
+    }
+
+    public void ProcessMineScore(int instigatorId, int victimId)
+    {
+        if (instigatorId == victimId)
+        {
+            _leaderBoard[victimId] = Mathf.Max(0.0f, _leaderBoard[victimId] + ScoreModifiers.SelfHitPenality);
+            return;
+        }
+
+        _leaderBoard[victimId] = Mathf.Max(0.0f, _leaderBoard[victimId] + ScoreModifiers.HitPenality);
+        _leaderBoard[instigatorId] = Mathf.Max(0.0f, _leaderBoard[instigatorId] - ScoreModifiers.HitBonus);
     }
 }
