@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         if (aCheckPoint.index != _currentRunNextCheckpointIndex)
             return;
 
-        aCheckPoint.isChecked = true;
+        aCheckPoint.OnChecked();
         _currentRunNextCheckpointIndex++;
         _checkPointManager.SetActiveCheckPoint(_currentRunNextCheckpointIndex);
     }
@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
     {
         if (_currentRunNextCheckpointIndex != _checkPointManager.CheckPointCount)
             return;
+
+        SceneFinder.I.startMound.OnReached();
 
         EndRun();
     }

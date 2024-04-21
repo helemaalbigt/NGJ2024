@@ -10,7 +10,8 @@ public class CheckPoint : MonoBehaviour {
    public bool isChecked;
    public bool placing;
    public bool isValidPos;
-   public PlayState playstate = PlayState.setup; 
+   public PlayState playstate = PlayState.setup;
+   public AudioSource checkedAudioSource;
    
    [Space(25)]
    public Text debugText;
@@ -55,6 +56,14 @@ public class CheckPoint : MonoBehaviour {
       flagPole.position = Vector3.Lerp(flagPole.position, newpos, Time.unscaledDeltaTime * 5f);
       
    }
+
+    public void OnChecked()
+    {
+        isChecked = true;
+
+        if (checkedAudioSource)
+            checkedAudioSource.Play();
+    }
 
    public enum PlayState {
       setup,
