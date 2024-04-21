@@ -10,6 +10,7 @@ public class CheckPoint : MonoBehaviour {
    public bool isChecked;
    public bool placing;
    public bool isValidPos;
+   public PlayState playstate = PlayState.setup; 
    
    [Space(25)]
    public Text debugText;
@@ -22,6 +23,7 @@ public class CheckPoint : MonoBehaviour {
    public Material placingInvalidMat;
    public GameObject placingWrapper;
    public GameObject realWrapper;
+   public Transform flagPole;
    
    private void Update() {
       debugText.text = (index + 1).ToString();
@@ -40,5 +42,23 @@ public class CheckPoint : MonoBehaviour {
       } else {
          flag.material = unCheckedMat;
       }
+
+      var poleTargetHeight = 0f;
+      if (playstate == PlayState.other) {
+         poleTargetHeight = -1.65f;
+      } else if (!isActive && playstate != PlayState.setup) {
+         poleTargetHeight = -0.8f;
+      }
+
+      var newpos = flagPole.position;
+      newpos.y = poleTargetHeight;
+      flagPole.position = Vector3.Lerp(flagPole.position, newpos, Time.unscaledDeltaTime * 5f);
+      
+   }
+
+   public enum PlayState {
+      setup,
+      other,
+      playing
    }
 }

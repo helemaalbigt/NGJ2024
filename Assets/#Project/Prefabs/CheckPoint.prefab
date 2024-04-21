@@ -281,6 +281,7 @@ MonoBehaviour:
   isChecked: 0
   placing: 0
   isValidPos: 0
+  playstate: 0
   debugText: {fileID: 3786013469457347738}
   flag: {fileID: 539308841585014792}
   placingRenderers:
@@ -294,6 +295,7 @@ MonoBehaviour:
   placingInvalidMat: {fileID: 2100000, guid: b7d16a1fa33abcb4eb5f59f06524708e, type: 2}
   placingWrapper: {fileID: 2980131854520693687}
   realWrapper: {fileID: 4328388339722702230}
+  flagPole: {fileID: 8996143217014427324}
 --- !u!135 &7231984612747096057
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -538,7 +540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161734414329136087, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.65
       objectReference: {fileID: 0}
     - target: {fileID: 9161734414329136087, guid: cfb7b047f8aebc043a53e6424dea3304, type: 3}
       propertyPath: m_LocalPosition.z

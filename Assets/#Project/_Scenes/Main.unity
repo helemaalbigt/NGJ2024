@@ -475,6 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkPointPrefab: {fileID: 3700233769561139685, guid: 9ac3df4582a683943b05518a65ebbeb7, type: 3}
   startMound: {fileID: 146423573}
+  stateMachine: {fileID: 1831862779}
   checkPoints: []
 --- !u!1 &240899999
 GameObject:
@@ -1532,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  mouseSensitivity: 100
+  mouseSensitivity: 200
   camera: {fileID: 816793992}
   rightHand: {fileID: 51276346}
 --- !u!114 &1118018531 stripped

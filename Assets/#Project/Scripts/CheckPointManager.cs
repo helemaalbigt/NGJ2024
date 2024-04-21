@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Rowhouse;
 using UnityEngine;
 
 public class CheckPointManager : MonoBehaviour {
     public CheckPoint checkPointPrefab;
     public GameObject startMound;
-
+    public MonoStateMachine stateMachine;
 
     public int CheckPointCount => checkPoints.Count;
 
@@ -15,6 +16,22 @@ public class CheckPointManager : MonoBehaviour {
 
     private const float MinMargin = 2f;
 
+    public void Update() {
+        var playState = CheckPoint.PlayState.other;
+        switch (stateMachine.GetCurrentState()) {
+            case "PlaceCheckPointsState":
+                playState = CheckPoint.PlayState.setup;
+                break;
+            case "RunState":
+                playState = CheckPoint.PlayState.playing;
+                break;
+        }
+        
+        foreach (var checkPoint in checkPoints) {
+            checkPoint.playstate = playState;
+        }
+    }
+    
     public CheckPoint CreateCheckPoint() {
         return Instantiate(checkPointPrefab, transform);
     }

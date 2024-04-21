@@ -35,8 +35,13 @@ public class EditorPlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.D)) {
             movement += transform.right;
         }
+
+        var mult = 1f;
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            mult = 2f;
+        }
         
-        transform.Translate(movement * Time.unscaledDeltaTime * speed);
+        transform.Translate(movement * Time.unscaledDeltaTime * speed * mult);
         rightHand.LookAt(camera.position + camera.forward * 1.5f);
 #endif
     }
