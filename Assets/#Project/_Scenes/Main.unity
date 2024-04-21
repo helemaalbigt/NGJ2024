@@ -2944,7 +2944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece5d422a1e751f489026b9a0351e891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _passthroughLayer: {fileID: 0}
+  _passthroughLayer: {fileID: 1976041450}
   _explosionCameraEffectCurve:
     serializedVersion: 2
     m_Curve:
