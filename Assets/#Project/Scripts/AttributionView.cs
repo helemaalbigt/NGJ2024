@@ -31,6 +31,6 @@ public class AttributionView : MonoBehaviour {
         bonus.gameObject.SetActive(!isActivePlayer);
         double t2 = explosions * (float)ScoreModifiers.HitBonus;
         var bonusTimeSpan = TimeSpan.FromSeconds(t2);
-        bonus.text = "player " + playerStr + ": -"+ bonusTimeSpan.ToString(@"mm\:ss");
+        bonus.text = "player " + playerStr + " bonus: -"+ bonusTimeSpan.ToString(@"mm\:ss");
     }
 }
