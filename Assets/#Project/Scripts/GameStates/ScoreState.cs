@@ -22,6 +22,7 @@ public class ScoreState : MonoState {
     private void OnEnable() {
         SceneFinder.I.detector.SetActive(false);
         SceneFinder.I.minesAvailableUI.SetActive(false);
+        MineManager.Instance.ShowVisuals(false);
         bodyManager.EnableMineCollision(false);
         _isGameOver = GameManager.Instance.IsGameOver();
         _isRoundOver = GameManager.Instance.IsRoundOver();
