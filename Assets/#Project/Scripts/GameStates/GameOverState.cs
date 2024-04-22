@@ -18,6 +18,8 @@ public class GameOverState : MonoState {
         SceneFinder.I.minesAvailableUI.SetActive(false);
         GameManager.Instance.OnGameOver();
         pageGroup.OpenPage(page);
+        
+        MineManager.Instance.UnspawnAll();
     }
 
     private void Update() {
