@@ -24,6 +24,7 @@ public class RunState : MonoState
    }
 
    private void OnDisable() {
+      _placingMine = null;
       musicManager.Stop();
    }
 

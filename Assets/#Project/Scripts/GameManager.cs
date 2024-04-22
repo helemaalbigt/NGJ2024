@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
         _currentPlayerId = 0;
 
         _leaderBoard.Clear();
+        _currentRunPlacedMines.Clear();
+        _currentRunTriggeredMines.Clear();
+        
         for (int i = 0; i < playerCount; i++)
         {
             _leaderBoard.Add(i, 0.0f);

@@ -58,7 +58,7 @@ public class MineManager : MonoBehaviour
     {
         foreach (var mine in _mines)
         {
-            Destroy(mine);
+            Destroy(mine.gameObject);
         }
 
         _mines.Clear();
